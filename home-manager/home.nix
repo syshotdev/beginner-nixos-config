@@ -53,6 +53,15 @@
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
+
+    packages = with pkgs; [
+      discord
+      keepassxc
+      audacity
+      rhythmbox
+      ferium # Minecraft
+      nvidia-system-monitor-qt
+    ];
   };
 
   # Enable home-manager and git

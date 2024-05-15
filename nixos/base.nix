@@ -20,6 +20,8 @@
     grub.device = "nodev"; # Let the bootloader decide where to put grub (not manual)
   };
 
+  boot.kernelParams = [ "intel_pstate=active" ];
+
   # Hostname on network
   networking.hostName = "nixos";
 
@@ -53,7 +55,7 @@
   services.xserver = {
     enable = true;
     displayManager.lightdm.enable = true;
-    desktopManager.mate.enable = true;
+    desktopManager.cinnamon.enable = true;
 
     xkb.layout = "us"; # Probably keyboard layout
     xkb.variant = ""; # No idea what this means
