@@ -11,7 +11,7 @@
         autosquash = true;
       };
       push = {autoSetupRemote = true;};
-      commit = {gpgsign = true;};
+      commit = {};
       rerere = {enabled = true;};
       core = {
         whitespace = "trailing-space,space-before-tab";
