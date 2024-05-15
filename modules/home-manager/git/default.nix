@@ -11,8 +11,10 @@
         autosquash = true;
       };
       push = {autoSetupRemote = true;};
-      commit = {};
+      commit = {gpgsign = true;};
       rerere = {enabled = true;};
+      gpg = {format = "ssh";};
+      user = {signingkey = "/home/neck/.ssh/id_ed25519.pub";};
       core = {
         whitespace = "trailing-space,space-before-tab";
         editor = "vim";
