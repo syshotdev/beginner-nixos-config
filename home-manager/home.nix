@@ -61,6 +61,7 @@
       rhythmbox
       ferium # Minecraft
       nvidia-system-monitor-qt
+      blender
     ];
   };
 

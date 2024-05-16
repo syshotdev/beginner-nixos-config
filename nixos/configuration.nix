@@ -10,24 +10,16 @@
   hostname,
   ...
 }: {
-  # You can import other NixOS modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.nvidia
     outputs.nixosModules.graphicsOptions
     outputs.nixosModules.steam
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ./base.nix
   ];
+
 
   nixpkgs = {
     # You can add overlays here
@@ -69,6 +61,8 @@
     # Opinionated: make flake registry and nix path match flake inputs
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+
+    settings.trusted-users = ["sudo" "${user}"]; # Who is trusted
   };
 
   networking.hostName = "${hostname}";
