@@ -77,7 +77,14 @@
     drivers = [ pkgs.brlaser ];
   };
 
-  
+  # Fonts because Chinese / Unicode characters don't show up correctly
+  fonts.fonts = with pkgs; [
+  noto-fonts
+  noto-fonts-extra
+  noto-fonts-cjk-sans
+  noto-fonts-cjk-serif
+  ];
+
   nixpkgs.config.allowUnfree = true; # Allow proprietary packages
 
   # Packages that should be enabled with every account.

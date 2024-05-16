@@ -25,6 +25,26 @@
     # ./nvim.nix
   ];
 
+  # Enable home-manager and git
+  programs.home-manager.enable = true;
+  programs.git.enable = true;
+
+  home = {
+    username = "${user}";
+    homeDirectory = "/home/${user}";
+
+    packages = with pkgs; [
+      discord
+      keepassxc
+      audacity
+      rhythmbox
+      ferium # Minecraft
+      nvidia-system-monitor-qt
+      blender
+      zoom-us
+    ];
+  };
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -45,29 +65,11 @@
     ];
     # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
     };
   };
 
-  home = {
-    username = "${user}";
-    homeDirectory = "/home/${user}";
 
-    packages = with pkgs; [
-      discord
-      keepassxc
-      audacity
-      rhythmbox
-      ferium # Minecraft
-      nvidia-system-monitor-qt
-      blender
-    ];
-  };
-
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
