@@ -1,6 +1,4 @@
 Publish this to github
-Make tabs maximize instead of what they do now when you put them at the top of the screen
-Change theme to dark
 Add all the apps to taskbar
 PDFS should be opened with Firefox
 SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal
@@ -21,8 +19,17 @@ Programming, Programs, ProgramData, SecretAndKeys, etc...)
 In this repo, add a secrets directory, and this will have extra users and keys, paths to private files,
 and whatever else.
 
+Things that are too hard for how much time they save configuring:
+Change theme to dark
+Make tabs maximize instead of what they do now when you put them at the top of the screen
+
+
 # Apps I need to install:
 Godot
 ALVR
 Zoom
+
+
+Done:
+
 
