@@ -8,6 +8,7 @@
   user,
   lib,
   inputs,
+  hostname,
   ...
 }: {
   
@@ -20,10 +21,10 @@
     grub.device = "nodev"; # Let the bootloader decide where to put grub (not manual)
   };
 
-  boot.kernelParams = [ "intel_pstate=active" ];
+  boot.kernelParams = [ "intel_pstate=active" ]; # TODO: Check if this works on AMD
 
   # Hostname on network
-  networking.hostName = "nixos";
+  networking.hostName = "${hostname}";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -105,4 +106,3 @@
 
   system.stateVersion = "23.05"; # Version of system
 }
-

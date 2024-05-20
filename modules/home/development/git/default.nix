@@ -1,8 +1,8 @@
 {...}: {
   programs.git = {
     enable = true;
-    userName = "Syshotdev";
-    userEmail = "syshotdev@gmail.com";
+    userName = "${nickname}";
+    userEmail = "${email}";
     extraConfig = {
       init = {defaultBranch = "main";};
       pull = {rebase = true;};
@@ -14,7 +14,7 @@
       commit = {gpgsign = true;};
       rerere = {enabled = true;};
       gpg = {format = "ssh";};
-      user = {signingkey = "/home/neck/.ssh/id_ed25519.pub";};
+      user = {signingkey = "/home/${user}/.ssh/id_ed25519.pub";};
       core = {
         whitespace = "trailing-space,space-before-tab";
         editor = "vim";

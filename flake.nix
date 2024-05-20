@@ -33,46 +33,54 @@
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    user = "neck";
-    hostname = "nixos";
+    # What the computer is called, we use it alot so we put it into a variable.
+    hostname = "nixos"; 
   in {
-    # Your custom packages
-    # Accessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./modules/home-manager;
+    # For the configuration.nix file, users should be sudo, set their passwords, check the checkbox
+    # of "isNormalUser" and all of the user specific stuff. Maybe in the home-manager configuration
+    # I can do that? It seems that I should be able to, however, I see that the home-manager probably
+    # doesn't have permissions to do sudo for users, and maybe I can't even configure anything through
+    # home-manager. I guess it's fine to add users manually inside configuration.nix, 
+    # but it's just another step that's a hassle and doesn't seem necessary.
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       "${hostname}" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs hostname user;};
+        specialArgs = {inherit inputs outputs hostname;};
         modules = [
-          # > Our main nixos configuration file <
-          ./nixos/configuration.nix
+          ./computers/${hostname}/configuration.nix
         ];
       };
     };
 
+    # I want each user to have thier own home packages, and be able to enable/disable packages from
+    # this configuration. However, it seems that we'll have to import home.nix into every single user's
+    # configuration file and that's extra boilerplate that I don't want.
+    # Also, how do I make new users? Do I just put it into users/{name}/default.nix and include it here?
+    # How do I import the username? Idk it's all so confusing
+
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "${user}@${hostname}" = home-manager.lib.homeManagerConfiguration {
+      # Default user. Has everything disabled, but full config to allow easy setting up.
+      "default@${hostname}" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs hostname user;};
+        extraSpecialArgs = {inherit inputs outputs hostname;};
         modules = [
-          # > Our main home-manager configuration file <
-          ./home-manager/home.nix
+          ./users/default
+        ];
+      };
+      # My account, has every home package enabled. The name is an inside joke
+      "neck@${hostname}" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs hostname;};
+        modules = [
+          ./users/neck
         ];
       };
     };
