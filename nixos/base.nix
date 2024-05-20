@@ -57,12 +57,6 @@
     displayManager.lightdm.enable = true;
     desktopManager.cinnamon.enable = true;
 
-    # Settings for desktop, like theme and keybinds
-    desktomManager.cinnamon = {
-      extraGSettingsOverridePackages = with pkgs; [];
-      extraGSettingsOverrides = '' '';
-    };
-
     xkb.layout = "us"; # Probably keyboard layout
     xkb.variant = ""; # No idea what this means
   };
@@ -85,10 +79,10 @@
 
   # Fonts because Chinese / Unicode characters don't show up correctly
   fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-extra
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
+  noto-fonts
+  noto-fonts-extra
+  noto-fonts-cjk-sans
+  noto-fonts-cjk-serif
   ];
 
   nixpkgs.config.allowUnfree = true; # Allow proprietary packages
