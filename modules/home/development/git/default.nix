@@ -1,4 +1,4 @@
-{...}: {
+{user, nickname, email, ...}: {
   programs.git = {
     enable = true;
     userName = "${nickname}";

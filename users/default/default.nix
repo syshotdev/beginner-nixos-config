@@ -13,14 +13,13 @@ let
 in {
   # You can import other home-manager modules here
   imports = [
-    # Imports home-manager and a lot of packages, which we disable in this file
-    ../../modules/home
+    # Distable these imports by either commenting them out or deleting them
+    (import ../../modules/home/art { inherit user nickname email; })
+    (import ../../modules/home/communication { inherit user nickname email; })
+    (import ../../modules/home/development { inherit user nickname email; })
+    (import ../../modules/home/sound { inherit user nickname email; })
+    (import ../../modules/home/other { inherit user nickname email; })
   ];
-
-  enableCategories = {
-    art.enable = true;
-  };
-  categories.other.enable = true;
 
   # This is for adding packages that you don't need to configure... Like at all.
   home.packages = with pkgs; [ 
