@@ -7,10 +7,9 @@
   ...
 }: 
 let
-  # User specific variables. TODO: Change these
-  user = "default";
-  nickname = "default3301"; # Difference being that user is computer's user, and nickname is what your username online is.
-  email = "default@default.com";
+  user = "neck";
+  nickname = "syshotdev"; # Difference being that user is computer's user, and nickname is what your username online is.
+  email = "syshotdev@gmail.com";
 in {
   imports = [
     # Disable these imports by either commenting them out or deleting them

@@ -47,6 +47,8 @@
     # home-manager. I guess it's fine to add users manually inside configuration.nix, 
     # but it's just another step that's a hassle and doesn't seem necessary.
 
+    nixosModules = import ./modules/system;
+
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {

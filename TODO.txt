@@ -3,21 +3,16 @@ Add all the apps to taskbar
 PDFS should be opened with Firefox
 SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal
 Hash passwords for my account
-Add different accounts for my computer
-Add different machines for this config
 Wallpaper should be cool
-Easy to navigate around this config
 Options for all of the modules in this config. (Like games and development should be able to be turned off)
 Explanations for why things are imported / configured / structured that way
-Restructure into modules and rename to make sense
 Nvim with all of my plugins and configurations that make sense
 Languages: English, Chinese, and Russian.
 Give credits to all the people I "borrowed" code from
-Rhythmbox set music path to /home/${user}/Music
 Create directories in home directory for all different apps and things (Like:
 Programming, Programs, ProgramData, SecretAndKeys, etc...)
 In this repo, add a secrets directory, and this will have extra users and keys, paths to private files,
-and whatever else.
+and like hashed passwords or whatever.
 
 Things that are too hard for how much time they save configuring:
 Change theme to dark
@@ -27,9 +22,10 @@ Make tabs maximize instead of what they do now when you put them at the top of t
 # Apps I need to install:
 Godot
 ALVR
-Zoom
 
 
 Done:
-
-
+Add different accounts for my computer
+Add different machines for this config
+Easy to navigate around this config
+Restructure into modules and rename to make sense

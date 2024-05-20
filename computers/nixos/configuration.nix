@@ -46,14 +46,16 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
-    settings.trusted-users = ["sudo" "default"]; # Who is given sudo permissions
+    settings.trusted-users = ["sudo" "default" "neck"]; # Who is given sudo permissions
   };
 
   networking.hostName = "${hostname}";
 
-  # Gonna get rid of this and put it into home-manager
+  # Users specifically on this computer.
+  # In the users directory on this repo, you define specific users.
+  # Defining users seperately allows user-specific packages, and personalized config with stuff like git.
   users.users = {
-    "${user}" = {
+    "neck" = {
       # TODO: You can set an initial password for your user.
       # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!
