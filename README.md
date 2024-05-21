@@ -5,8 +5,10 @@ This repo will get you working a working configuration quickly and will teach yo
 about nix (the language) and how to configure stuff without the thousands of pitfalls I had to endure.
 
 Some links that may be of use:
+
 https://nixos.org/learn/
-https://github.com/Misterio77/nix-starter-configs/tree/main # Original configuration this is based on
+
+https://github.com/Misterio77/nix-starter-configs/tree/main (Original configuration this is based on)
 
 
 How to start this:
@@ -16,7 +18,7 @@ in the `Documents` folder, and name it something like `nixos-config`.
 
 ```bash
 cd ~/Documents
-git clone (TODO: PUT REPO HERE) nixos-config # Will clone this repo to folder "nixos-config"
+git clone git@github.com:syshotdev/beginner-nixos-config.git nixos-config # Will clone this repo to folder "nixos-config"
 cd nixos-config
 ```
 - Make sure you're running Nix 2.4+, and opt into the experimental `flakes` and `nix-command` features:
@@ -34,12 +36,10 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
   configuration.
   - If you don't have home-manager installed, try `nix shell nixpkgs#home-manager`.
 
-And that's it, really! You're ready to have fun with your configurations using
-the latest and greatest nix flake-enabled command UX.
-
 ## Configuration structure
 
-What is a module? It's simple. It's a file of code that does stuff.
+What is a module? It's simple. It's a file of code that does stuff. 
+
 An example: steam.nix, adds steam to your system and configures it.
 
 You'll have to understand the file structure of this repo in order to add users, computers, and packages.
@@ -48,14 +48,12 @@ You'll have to understand the file structure of this repo in order to add users,
 - modules
   - home
   - system
-
 - computers  (Houses all of the computer-specific configurations)
   - default
     - base.nix
   - nixos
     - configuration.nix (Imports default/base.nix, which has all of the shared configs)
     - hardware-configuration.nix (Computer hardware stuff, automatically generated)
-
 - users
   - default
     - default.nix
@@ -66,9 +64,9 @@ Here's how to read this:
 Each bullet point has a file, and anything to the right and down of that file is imported.
 
 
-The `modules` directory has two parts. `home` and `system`.
-`home` is all of the packages that can be imported via *home-manager*,
-and `system` is stuff that configures the system as a whole, like drivers and base apps.
+- The `modules` directory has two parts. `home` and `system`.
+- `home` is all of the packages that can be imported via *home-manager*,
+- and `system` is stuff that configures the system as a whole, like drivers and base apps.
 
 `configuration.nix` imports modules for the entire system, like drivers and system-level packages.
 It also defines what users it uses on the system.
@@ -85,10 +83,10 @@ cd computers
 mkdir COMPUTER_NAME
 cp nixos/configuration.nix COMPUTER_NAME
 ```
-To explain what these commands do,
-`cd` goes into a directory, this case the *computers* directory
-`mkdir` (mk)es (dir)ectory, calls it whatever you specified
-`cp` means *copy*, and it takes a source path and a destination path 
+To explain what these commands do:
+- `cd` goes into a directory, this case the *computers* directory
+- `mkdir` (mk)es (dir)ectory, calls it whatever you specified
+- `cp` means *copy*, and it takes a source path and a destination path 
 This use of `cp` copies my configuration.nix to your computer's configuration folder
 
 Now you need to add your hardware-configuration.nix to your computer configuration.
@@ -110,7 +108,7 @@ hostname = "COMPUTER_NAME";
 ## Defining a new user
 
 To add a new user, cd into the `users` directory and copy the default.
-(Replace USER with the username that you want)
+(Replace USERNAME with the username that you want)
 ```bash
 cd users/
 cp -r default USERNAME
@@ -126,6 +124,7 @@ email = "default@default.com";
 ```
 
 Nickname means online name, which could be the same as your computer USERNAME.
+
 Save the file.
 
 Next, in flake.nix on the top folder, edit the file and find the line named homeConfigurations
@@ -136,7 +135,7 @@ homeConfigurations = {
   ...
 }
 ```
-Copy the `"default@${hostname}"` all the way curly bracket after `modules`,
+Copy the `"default@${hostname}"` all the way to the curly bracket after `modules`,
 and paste it back into homeConfigurations as it looks now.
 Rename all *default*'s in your new copied code to what your USERNAME is.
 
@@ -153,7 +152,7 @@ You can replace the "neck" with your USERNAME, or make a new user with your USER
 ## Changing packages per-user
 
 Go into the users/USERNAME/default.nix and you'll find `imports`.
-Or for packages that you don't need to configure: `home.packages` and [add any package you want.](search.nixos.org)
+Or for packages that you don't need to configure: `home.packages` and [add any package you want.](https://search.nixos.org)
 
 ## Applying the configuration
 
@@ -173,3 +172,5 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
   configuration.
   - If you don't have home-manager installed, try `nix shell nixpkgs#home-manager`.
 
+
+## Total hours spent: like 45 hr Idk at this point
