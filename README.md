@@ -13,8 +13,7 @@ Some links that may be of use:
 ## Quickstart with my specific configuration
 
 Requirements:
-Nixos or Nix 2.4+
-Git
+Nixos
 
 ```bash
 export NIX_CONFIG="experimental-features = nix-command flakes"
@@ -23,12 +22,13 @@ nix shell nixpkgs#home-manager
 cd ~/Documents
 git clone git@github.com:syshotdev/beginner-nixos-config.git nixos-config 
 cd nixos-config
+cp /etc/nixos/hardware-configuration.nix computers/nixos
 sudo nixos-rebuild switch --flake .#nixos
 home-manager switch --flake .#neck@nixos
 ```
 
-To explain what's happening here, we're going into the `Documents` folder, 
-cloning this repository, making sure we have dependencies to compile it, and we compile it.
+To explain what's happening here, we're making sure we have dependencies to compile nixos,
+going into the `Documents` folder, cloning this repository, and we compile it.
 
 
 ## Configuration structure
