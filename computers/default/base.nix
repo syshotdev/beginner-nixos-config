@@ -59,7 +59,7 @@
     desktopManager.cinnamon.enable = true;
 
     # Settings for desktop, like theme and keybinds
-    desktomManager.cinnamon = {
+    desktopManager.cinnamon = {
       extraGSettingsOverridePackages = with pkgs; [];
       extraGSettingsOverrides = '' '';
     };
@@ -104,5 +104,5 @@
     wget
   ];
 
-  system.stateVersion = "23.05"; # Version of system
+  system.stateVersion = "23.11"; # Version of system
 }
