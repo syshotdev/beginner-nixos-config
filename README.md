@@ -6,41 +6,32 @@ about nix (the language) and how to configure stuff without the thousands of pit
 
 Some links that may be of use:
 
-https://nixos.org/learn/
+- https://nixos.org/learn/
+- https://github.com/Misterio77/nix-starter-configs/tree/main (Original configuration this is based on)
 
-https://github.com/Misterio77/nix-starter-configs/tree/main (Original configuration this is based on)
+## Quickstart with my specific configuration
 
-
-How to start this:
-
-First, clone this repo to somewhere. I'd put it in your home directory somewhere, for example
-in the `Documents` folder, and name it something like `nixos-config`.
+Requirements:
+Nixos or Nix 2.4+
+Git
 
 ```bash
-cd ~/Documents
-git clone git@github.com:syshotdev/beginner-nixos-config.git nixos-config # Will clone this repo to folder "nixos-config"
-cd nixos-config
-```
-- Make sure you're running Nix 2.4+, and opt into the experimental `flakes` and `nix-command` features:
-```bash
-# Should be 2.4+
-nix --version
 export NIX_CONFIG="experimental-features = nix-command flakes"
+nix-shell -p git
+nix shell nixpkgs#home-manager
+cd ~/Documents
+git clone git@github.com:syshotdev/beginner-nixos-config.git nixos-config 
+cd nixos-config
+sudo nixos-rebuild switch --flake .#nixos
+home-manager switch --flake .#neck@nixos
 ```
 
-## Usage
+To explain what's happening here, we're going into the `Documents` folder, 
+cloning this repository, making sure we have dependencies to compile it, and we compile it.
 
-- Run `sudo nixos-rebuild switch --flake .#hostname` to apply your system
-  configuration.
-- Run `home-manager switch --flake .#username@hostname` to apply your home
-  configuration.
-  - If you don't have home-manager installed, try `nix shell nixpkgs#home-manager`.
 
 ## Configuration structure
 
-What is a module? It's simple. It's a file of code that does stuff. 
-
-An example: steam.nix, adds steam to your system and configures it.
 
 You'll have to understand the file structure of this repo in order to add users, computers, and packages.
 
@@ -68,7 +59,7 @@ Each bullet point has a file, and anything to the right and down of that file is
 - `home` is all of the packages that can be imported via *home-manager*,
 - and `system` is stuff that configures the system as a whole, like drivers and base apps.
 
-`configuration.nix` imports modules for the entire system, like drivers and system-level packages.
+`configuration.nix` imports modules for the entire system, like drivers and system-level packages. 
 It also defines what users it uses on the system.
 
 `users` is a directory that has configurations for specific users, like username, packages, and
@@ -77,7 +68,7 @@ user-specific configurations.
 ## Defining a new computer
 
 Assuming you are cd'ed in the "nixos-config" directory, you can run these commands to make a new computer configuration.
-Note: COMPUTER_NAME should be changed to what you want your computer to be called
+- Note: COMPUTER_NAME should be changed to what you want your computer to be called
 ```bash
 cd computers
 mkdir COMPUTER_NAME
@@ -173,4 +164,4 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
   - If you don't have home-manager installed, try `nix shell nixpkgs#home-manager`.
 
 
-## Total hours spent: like 45 hr Idk at this point
+## Total hours spent: like 46 hr
