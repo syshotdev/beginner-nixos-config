@@ -1,7 +1,7 @@
-{user, nickname, email, ...}:
+{user, nickname, email, lib, ...}:
 {
   imports = [
-    (import ./git { inherit user nickname email; }) # Git specifically requires these variables to compile
+    (import ./git { inherit user nickname email lib; }) # Git specifically requires these variables to compile
     ./neovim
   ];
 }

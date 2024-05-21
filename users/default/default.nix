@@ -16,10 +16,10 @@ in {
     # Disable these imports by either commenting them out or deleting them
 
     # Why all of these "user nickname email" stuff? For some reason, that's the only way
-    # the packages know that they exist. The stuff up top (like inputs, pkgs, ..) get imported anyways
+    # the packages know that the imports exist.
     (import ../../modules/home/art { inherit user nickname email; })
     (import ../../modules/home/communication { inherit user nickname email; })
-    (import ../../modules/home/development { inherit user nickname email; })
+    (import ../../modules/home/development { inherit user nickname email lib; })
     (import ../../modules/home/sound { inherit user nickname email; })
     (import ../../modules/home/other { inherit user nickname email; })
   ];
