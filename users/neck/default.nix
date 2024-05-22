@@ -32,7 +32,7 @@ in {
     ferium # Minecraft
     nvidia-system-monitor-qt
     gnome.gnome-system-monitor
-    (blender.override { cudaSupport = true; })
+    # Disabled temporarily (blender.override { cudaSupport = true; })
     zoom-us
   ];
 
