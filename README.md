@@ -14,8 +14,8 @@ Some links that may be of use:
 
 Requirements:
 - Nixos
-- Nvidia Graphics (can be changed inside the computers/nixos/configuration.nix, comment out nvidia)
-- Intel CPU (also can be changed by uncommenting "optimizations" from imports)
+- Nvidia Graphics (can be changed inside the computers/nixos/configuration.nix, comment out "nvidia" from imports)
+- Intel CPU (can also be changed by commenting "optimizations" from imports)
 
 ```bash
 export NIX_CONFIG="experimental-features = nix-command flakes"
