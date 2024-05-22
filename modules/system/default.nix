@@ -4,5 +4,6 @@
   # List your module files here
   nvidia = ./nvidia.nix;
   graphicsOptions = ./graphics.nix;
+  optimizations = ./optimizations.nix;
   steam = ./steam;
 }

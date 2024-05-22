@@ -21,16 +21,19 @@
     grub.device = "nodev"; # Let the bootloader decide where to put grub (not manual)
   };
 
-  boot.kernelParams = [ "intel_pstate=active" ]; # TODO: Check if this works on AMD
-
   # Hostname on network
   networking.hostName = "${hostname}";
 
   # Enable networking
   networking.networkmanager.enable = true;
   networking.firewall = {
-    enable = true; # Other options when I understand what they do
+    enable = true; 
   };
+
+   # Disable IPv6
+  networking.enableIPv6 = false;
+  boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparantly this helpts
+
 
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8"; # (Select internationalisation properties.) What does that mean???

@@ -13,22 +13,25 @@ Some links that may be of use:
 ## Quickstart with my specific configuration
 
 Requirements:
-Nixos
+- Nixos
+- Nvidia Graphics (can be changed inside the computers/nixos/configuration.nix, comment out nvidia)
+- Intel CPU (also can be changed by uncommenting "optimizations" from imports)
 
 ```bash
 export NIX_CONFIG="experimental-features = nix-command flakes"
 nix-shell -p git
 nix shell nixpkgs#home-manager
 cd ~/Documents
-git clone git@github.com:syshotdev/beginner-nixos-config.git nixos-config 
+git clone https://github.com/syshotdev/beginner-nixos-config.git nixos-config 
 cd nixos-config
+nixos-generate-config
 cp /etc/nixos/hardware-configuration.nix computers/nixos
 sudo nixos-rebuild switch --flake .#nixos
 home-manager switch --flake .#neck@nixos
 ```
 
 To explain what's happening here, we're making sure we have dependencies to compile nixos,
-going into the `Documents` folder, cloning this repository, and we compile it.
+going into the `Documents` folder, cloning this repository, and we compile the computer "nixos" and the user "neck".
 
 
 ## Configuration structure

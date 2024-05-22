@@ -13,6 +13,7 @@
     outputs.nixosModules.nvidia
     outputs.nixosModules.graphicsOptions
     outputs.nixosModules.steam
+    outputs.nixosModules.optimizations
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
