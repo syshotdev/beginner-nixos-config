@@ -12,10 +12,9 @@ Some links that may be of use:
 
 ## Quickstart with my specific configuration
 
-Requirements:
-- Nixos
-- Nvidia Graphics (can be changed inside the computers/nixos/configuration.nix, comment out "nvidia" from imports)
-- Intel CPU (can also be changed by commenting "optimizations" from imports)
+Notes: 
+- I'm pretty sure this ONLY works on NixOS
+- Only tested with Intel CPU and Nvidia graphics but should work (as it's basically stock)
 
 ```bash
 export NIX_CONFIG="experimental-features = nix-command flakes"
@@ -25,9 +24,9 @@ cd ~/Documents
 git clone https://github.com/syshotdev/beginner-nixos-config.git nixos-config 
 cd nixos-config
 nixos-generate-config
-cp /etc/nixos/hardware-configuration.nix computers/nixos
-sudo nixos-rebuild switch --flake .#nixos
-home-manager switch --flake .#neck@nixos
+cp /etc/nixos/hardware-configuration.nix computers/default
+sudo nixos-rebuild switch --flake .#default
+home-manager switch --flake .#default@default
 ```
 
 To explain what's happening here, we're making sure we have dependencies to compile nixos,

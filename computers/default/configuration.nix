@@ -36,17 +36,6 @@
       extraGroups = ["wheel" "dialout"];
     };
   };
-
-  nixpkgs = {
-    # Put overlays here, I just got rid of them because I don't need them
-
-    # Nixpkgs config
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-    };
-  };
-
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -64,6 +53,16 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
     settings.trusted-users = ["sudo" "default"]; # TODO: Replace "default" with your user (if want to execute commands at all with sudo)
+  };
+
+  nixpkgs = {
+    # Put overlays here, I just got rid of them because I don't need them
+
+    # Nixpkgs config
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+    };
   };
 
   networking.hostName = "${hostname}";
