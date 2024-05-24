@@ -10,7 +10,7 @@ Some links that may be of use:
 - https://github.com/Misterio77/nix-starter-configs/tree/main (Original configuration this is based on)
 - https://github.com/MattCairns/nixos-config (I stole stuff from his repo)
 
-## Quickstart with my specific configuration
+## General configuration quickstart
 
 Notes: 
 - I'm pretty sure this ONLY works on NixOS
