@@ -8,8 +8,8 @@
 }: 
 let
   # User specific variables. TODO: Change these
-  user = "default";
-  nickname = "default3301"; # Difference being that user is computer's user, and nickname is what your username online is.
+  user = "john"; # Computer user's name
+  nickname = "Ilovecats0013"; # What they call you online (can be the same as computer username)
   email = "default@default.com";
 in {
   imports = [
@@ -25,15 +25,9 @@ in {
   ];
 
   # This is for adding packages that you don't need to configure through .nix files
+  # https://search.nixos.org for packages
   home.packages = with pkgs; [ 
-    discord
-    keepassxc
-    audacity
-    rhythmbox
-    ferium # Minecraft
-    nvidia-system-monitor-qt
-    blender
-    zoom-us
+    # discord
   ];
 
   # Enable home-manager and git (Essential)

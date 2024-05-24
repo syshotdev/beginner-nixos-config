@@ -34,7 +34,7 @@
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
     # What the computer is called, we use it alot so we put it into a variable.
-    hostname = "nixos"; 
+    computer = "nixos"; 
   in {
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
@@ -52,10 +52,10 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      "${hostname}" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs hostname;};
+      "${computer}" = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs computer;};
         modules = [
-          ./computers/${hostname}/configuration.nix
+          ./computers/${computer}/configuration.nix
         ];
       };
     };
@@ -70,17 +70,17 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       # Default user. Has everything disabled, but full config to allow easy setting up.
-      "default@${hostname}" = home-manager.lib.homeManagerConfiguration {
+      "default@${computer}" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs hostname;};
+        extraSpecialArgs = {inherit inputs outputs computer;};
         modules = [
           ./users/default
         ];
       };
       # My account, has every home package enabled. The name is an inside joke
-      "neck@${hostname}" = home-manager.lib.homeManagerConfiguration {
+      "neck@${computer}" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs hostname;};
+        extraSpecialArgs = {inherit inputs outputs computer;};
         modules = [
           ./users/neck
         ];

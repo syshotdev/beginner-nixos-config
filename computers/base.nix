@@ -31,8 +31,8 @@
   };
 
    # Disable IPv6
-  networking.enableIPv6 = false;
-  boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparantly this helpts
+  #networking.enableIPv6 = false;
+  #boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparantly this helpts
 
 
   time.timeZone = "America/Los_Angeles";
@@ -82,13 +82,31 @@
     pulse.enable = true;
   };
 
+  # This is for specifically (my) brother printer, may work with other companieieses printers
   services.printing = {
     enable = true;
-    drivers = [ pkgs.brlaser ];
+
+    drivers = with pkgs; [ 
+      gutenprint
+      #gutenprintBin
+      brlaser 
+      brgenml1lpr
+      brgenml1cupswrapper
+    ];
+  };
+  services.avahi = { # Also printing stuff
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
   };
 
+
   # Fonts because Chinese / Unicode characters don't show up correctly
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-extra
     noto-fonts-cjk-sans

@@ -10,6 +10,7 @@ let
   user = "neck";
   nickname = "syshotdev"; # Difference being that user is computer's user, and nickname is what your username online is.
   email = "syshotdev@gmail.com";
+  nvidia = true;
 in {
   imports = [
     # Disable these imports by either commenting them out or deleting them
@@ -27,13 +28,18 @@ in {
   home.packages = with pkgs; [ 
     discord
     keepassxc
-    audacity
     rhythmbox
+    zoom-us
+
     ferium # Minecraft
+
     nvidia-system-monitor-qt
     gnome.gnome-system-monitor
-    # Disabled temporarily (blender.override { cudaSupport = true; })
-    zoom-us
+
+    # Distilled this expression means "if nvidia allowed, make blender use it"
+    (if nvidia then (blender.override { cudaSupport = true; }) else blender)
+    obs-studio
+    audacity
   ];
 
   # Enable home-manager and git (Essential)

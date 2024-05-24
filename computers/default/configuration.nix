@@ -10,17 +10,32 @@
   ...
 }: {
   imports = [
-    outputs.nixosModules.optimizations.cpu
-    outputs.nixosModules.optimizations.gpu
-    outputs.nixosModules.optimizations.intelCPU
-    outputs.nixosModules.optimizations.nvidia
-    outputs.nixosModules.steam
+    # Import my pre-configured system modules
+    outputs.nixosModules.cpu # General optimizations
+    outputs.nixosModules.gpu
+    # outputs.nixosModules.steam
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../base.nix # Base system settings
   ];
 
+  # Users specifically on this computer.
+  # In the users directory on this repo, you define specific users.
+  # Defining users seperately allows user-specific packages, and personalized config with stuff like git.
+  users.users = {
+    "default" = {
+      # TODO: You can set an initial password for your user.
+      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
+      # Be sure to change it (using passwd) after rebooting!
+      initialPassword = "e";
+      isNormalUser = true;
+      openssh.authorizedKeys.keys = [
+        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
+      ];
+      extraGroups = ["wheel" "dialout"];
+    };
+  };
 
   nixpkgs = {
     # Put overlays here, I just got rid of them because I don't need them
@@ -48,25 +63,10 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
-    settings.trusted-users = ["sudo" "neck"]; # Who is given sudo permissions
+    settings.trusted-users = ["sudo" "default"]; # TODO: Replace "default" with your user (if want to execute commands at all with sudo)
   };
 
   networking.hostName = "${hostname}";
-
-  # Users specifically on this computer.
-  # In the users directory on this repo, you define specific users.
-  # Defining users seperately allows user-specific packages, and personalized config with stuff like git.
-  users.users = {
-    "neck" = {
-      # TODO: Be sure to change this (using passwd) after rebooting!
-      initialPassword = "e";
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      extraGroups = ["wheel" "dialout"];
-    };
-  };
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

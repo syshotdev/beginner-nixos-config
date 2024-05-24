@@ -36,23 +36,25 @@ going into the `Documents` folder, cloning this repository, and we compile the c
 
 ## Configuration structure
 
-
-You'll have to understand the file structure of this repo in order to add users, computers, and packages.
+It's best to understand this structure (To know where to put things) but you can skip over this section.
 
 - flake.nix
 - modules
   - home
   - system
+
 - computers  (Houses all of the computer-specific configurations)
+  - base.nix (Base settings for all computers)
   - default
-    - base.nix
+    - configuration.nix
   - nixos
-    - configuration.nix (Imports default/base.nix, which has all of the shared configs)
-    - hardware-configuration.nix (Computer hardware stuff, automatically generated)
+    - configuration.nix
+    - hardware-configuration.nix (Specifically my hardware, in tutorial you'll get your own)
+
 - users
   - default
     - default.nix
-  - {user}
+  - neck
     - default.nix
 
 Here's how to read this:
@@ -61,20 +63,22 @@ Each bullet point has a file, and anything to the right and down of that file is
 
 - The `modules` directory has two parts. `home` and `system`.
 - `home` is all of the packages that can be imported via *home-manager*,
-- and `system` is stuff that configures the system as a whole, like drivers and base apps.
+- and `system` is stuff that configures the system as a whole, like drivers and desktop environments.
 
-`configuration.nix` imports modules for the entire system, like drivers and system-level packages. 
+From computers, `configuration.nix` imports modules for the entire system, like drivers and system-level packages. 
 It also defines what users it uses on the system.
 
 `users` is a directory that has configurations for specific users, like username, packages, and
 user-specific configurations.
+
+Each main folder will (in the future) have a README with more information about it's purpose.
 
 ## Defining a new computer
 
 Assuming you are cd'ed in the "nixos-config" directory, you can run these commands to make a new computer configuration.
 - Note: COMPUTER_NAME should be changed to what you want your computer to be called
 ```bash
-cd computers
+cd computers/
 mkdir COMPUTER_NAME
 cp nixos/configuration.nix COMPUTER_NAME
 ```
@@ -90,14 +94,13 @@ Usually your hardware-configuration is located at `/etc/nixos/` but maybe your c
 cp /etc/nixos/hardware-configuration.nix ./COMPUTER_NAME
 ```
 
-Lastly, go into the flake.nix at the top of the repo and change hostname to "COMPUTER_NAME"
 ```bash
 cd .. # Go up one level
 ```
-Find this line in the flake.nix file, replace COMPUTER_NAME with what your computer config was called
+Find this line in the flake.nix file, replace COMPUTER_NAME with what you named your computer and save the file.
 ```nix
 # flake.nix
-hostname = "COMPUTER_NAME";
+computer = "COMPUTER_NAME";
 ```
 
 ## Defining a new user
@@ -113,8 +116,10 @@ Now, edit the text inside of the USERNAME/default.nix
 You'll find lines named user, nickname, and email. Fill those in.
 ```nix
 # USERNAME.nix
-user = "default";
-nickname = "default3301";
+
+# TODO: Change these!
+user = "john";
+nickname = "Ilovecats0013";
 email = "default@default.com";
 ```
 
@@ -122,15 +127,18 @@ Nickname means online name, which could be the same as your computer USERNAME.
 
 Save the file.
 
-Next, in flake.nix on the top folder, edit the file and find the line named homeConfigurations
+```bash
+cd .. # Go to the top folder for next instruction
+```
 
+Next, in flake.nix, edit the file and find the line named homeConfigurations
 ```nix
 # flake.nix
 homeConfigurations = {
   ...
 }
 ```
-Copy the `"default@${hostname}"` all the way to the curly bracket after `modules`,
+Copy the `"default@${computer}"` all the way to the curly bracket after `modules`,
 and paste it back into homeConfigurations as it looks now.
 Rename all *default*'s in your new copied code to what your USERNAME is.
 
@@ -144,11 +152,6 @@ users.users = {
 ```
 You can replace the "neck" with your USERNAME, or make a new user with your USERNAME.
 
-## Changing packages per-user
-
-Go into the users/USERNAME/default.nix and you'll find `imports`.
-Or for packages that you don't need to configure: `home.packages` and [add any package you want.](https://search.nixos.org)
-
 ## Applying the configuration
 
 Earlier there were commands for building the configuration.
@@ -161,11 +164,25 @@ nix --version
 export NIX_CONFIG="experimental-features = nix-command flakes"
 ```
 
-- Run `sudo nixos-rebuild switch --flake .#hostname` to apply your system
+- Run `sudo nixos-rebuild switch --flake .#computer` to apply your system
   configuration.
-- Run `home-manager switch --flake .#username@hostname` to apply your home
+- Run `home-manager switch --flake .#username@computer` to apply your home
   configuration.
   - If you don't have home-manager installed, try `nix shell nixpkgs#home-manager`.
 
+## Changing packages per-user
 
-## Total hours spent: like 46 hr
+Go into the users/USERNAME/default.nix and you'll find `imports`.
+Or for packages that you don't need to configure: `home.packages` and [add any package you want.](https://search.nixos.org)
+
+## Adding modules in an organized way
+
+Modules are configurations to your system like a new package, configuration to a package, configuration
+to the system (like boot options), themes, etc. Since modules are *modular*, you can enable/disable them
+very easily.
+
+However, since they have an enable option and disable option, they take more code to include and organize.
+
+
+
+## Total hours spent: like 50 hr

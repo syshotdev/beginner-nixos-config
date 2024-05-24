@@ -2,8 +2,6 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 {
   # List your module files here
-  nvidia = ./nvidia.nix;
-  graphicsOptions = ./graphics.nix;
-  optimizations = ./optimizations.nix;
+  optimizations = import ./optimizations;
   steam = ./steam;
 }

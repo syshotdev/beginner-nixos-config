@@ -13,12 +13,15 @@ Make default computer and user, compiles without any configuration on all system
 Update README to use default computer
 Move computers/default/base.nix to computers/base.nix
 Organize system module to have specific Optimizations directory (For laptops, specific CPUs, et cetera.
-Separate all CPU optimizations for AMD, Intel, and Laptop.
 Add AMD support
 Submit question to Nixos form regarding home-manager and enabling / disabling configurations.
 Organize user "neck"s packages (since there are like more than 10 now and it's growing)
 Test new and improved configuration by installing on old laptop
 Find out what was lagging Firefox and giving super long loading times
+Make the Configuration structure part of README more simple
+Refactor instructions for making new computer, and making new user
+Add section in README that explains how to correctly add new part to modules directory
+Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
 
 
 Things that are too hard for how much time they save configuring:
@@ -40,3 +43,4 @@ Add different machines for this config
 Easy to navigate around this config
 Restructure into modules and rename to make sense
 Give credits to all the people I "borrowed" code from
+Separate all CPU optimizations for AMD, Intel, and Laptop.
