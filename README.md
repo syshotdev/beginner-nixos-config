@@ -30,7 +30,7 @@ home-manager switch --flake .#default@default
 ```
 
 To explain what's happening here, we're making sure we have dependencies to compile nixos,
-going into the `Documents` folder, cloning this repository, and we compile the computer "nixos" and the user "neck".
+going into the `Documents` folder, cloning this repository, and we compile the computer "default" and the user "default".
 
 
 ## Configuration structure
