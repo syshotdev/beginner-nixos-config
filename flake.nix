@@ -48,8 +48,8 @@
 
     nixosModules = import ./modules/system;
 
-    customPackages = forAllSystems
-      (
+    customPackages = forAllSystems # Custom packages not in the nix repository
+      (system:
         let pkgs = nixpkgs.legacyPackages.${system};
         in import ./modules/customPackages { inherit inputs outputs; }
       );

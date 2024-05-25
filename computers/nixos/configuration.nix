@@ -14,9 +14,9 @@
     outputs.nixosModules.optimizations.gpu
     outputs.nixosModules.optimizations.intelCPU
     outputs.nixosModules.optimizations.nvidia
-
-    outputs.nixosModules.godot4-mono
     outputs.nixosModules.steam
+
+    #outputs.customPackages.godot4-mono
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
