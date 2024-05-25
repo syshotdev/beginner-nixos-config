@@ -8,7 +8,7 @@
   user,
   lib,
   inputs,
-  hostname,
+  computer,
   ...
 }: {
   
@@ -22,7 +22,7 @@
   };
 
   # Hostname on network
-  networking.hostName = "${hostname}";
+  networking.hostName = "${computer}";
 
   # Enable networking
   networking.networkmanager.enable = true;

@@ -6,7 +6,7 @@
   lib,
   config,
   pkgs,
-  hostname,
+  computer,
   ...
 }: {
   imports = [
@@ -14,6 +14,8 @@
     outputs.nixosModules.optimizations.gpu
     outputs.nixosModules.optimizations.intelCPU
     outputs.nixosModules.optimizations.nvidia
+
+    outputs.nixosModules.godot4-mono
     outputs.nixosModules.steam
 
     # Import your generated (nixos-generate-config) hardware configuration
@@ -51,7 +53,7 @@
     settings.trusted-users = ["sudo" "neck"]; # Who is given sudo permissions
   };
 
-  networking.hostName = "${hostname}";
+  networking.hostName = "${computer}";
 
   # Users specifically on this computer.
   # In the users directory on this repo, you define specific users.

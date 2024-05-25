@@ -7,7 +7,6 @@
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-23.11";
@@ -48,6 +47,12 @@
     # but it's just another step that's a hassle and doesn't seem necessary.
 
     nixosModules = import ./modules/system;
+
+    customPackages = forAllSystems
+      (
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in import ./modules/customPackages { inherit inputs outputs; }
+      );
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
