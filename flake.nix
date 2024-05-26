@@ -1,5 +1,5 @@
 {
-  description = "A copy of a template with some changes for nixos";
+  description = "Syshotdev's system configuration flake";
 
   inputs = {
     # Nixpkgs
@@ -39,12 +39,6 @@
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    # For the configuration.nix file, users should be sudo, set their passwords, check the checkbox
-    # of "isNormalUser" and all of the user specific stuff. Maybe in the home-manager configuration
-    # I can do that? It seems that I should be able to, however, I see that the home-manager probably
-    # doesn't have permissions to do sudo for users, and maybe I can't even configure anything through
-    # home-manager. I guess it's fine to add users manually inside configuration.nix, 
-    # but it's just another step that's a hassle and doesn't seem necessary.
 
     nixosModules = import ./modules/system;
 

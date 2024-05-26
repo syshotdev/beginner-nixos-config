@@ -49,6 +49,7 @@ let
     if builtins.isString v
     then "${k}=${v}"
     else "${k}=${builtins.toJSON v}");
+  pkgs = import <nixpkgs> {};
 in
 stdenv.mkDerivation rec {
   pname = "godot4-mono";

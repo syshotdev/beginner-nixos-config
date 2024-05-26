@@ -8,7 +8,12 @@
   pkgs,
   computer,
   ...
-}: {
+}: 
+
+let
+  godot4-mono = pkgs.callPackage ../../modules/customPackages/godot4-mono {};
+in
+{
   imports = [
     outputs.nixosModules.optimizations.cpu
     outputs.nixosModules.optimizations.gpu
@@ -16,12 +21,11 @@
     outputs.nixosModules.optimizations.nvidia
     outputs.nixosModules.steam
 
-    #outputs.customPackages.godot4-mono
-
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../base.nix # Base system settings
   ];
+  environment.systemPackages = [ godot4-mono ];
 
 
   nixpkgs = {
