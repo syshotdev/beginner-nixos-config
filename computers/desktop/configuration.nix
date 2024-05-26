@@ -9,10 +9,6 @@
   computer,
   ...
 }: 
-
-let
-  godot4-mono = pkgs.callPackage ../../modules/customPackages/godot4-mono {};
-in
 {
   imports = [
     outputs.nixosModules.optimizations.cpu
@@ -25,19 +21,25 @@ in
     ./hardware-configuration.nix
     ../base.nix # Base system settings
   ];
-  environment.systemPackages = [ godot4-mono ];
 
+  networking.hostName = "${computer}";
 
-  nixpkgs = {
-    # Put overlays here, I just got rid of them because I don't need them
-
-    # Nixpkgs config
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
+  # Users are defined in the (root)/users/ dir.
+  # Defining users separately allows user-specific packages and personalized config like git username.
+  users.users = {
+    "neck" = {
+      # TODO: Be sure to change this (using passwd) after rebooting!
+      initialPassword = "e";
+      isNormalUser = true;
+      extraGroups = ["wheel" "dialout"];
     };
   };
 
+  # Create the users from (root)/users/{name}/{computer-specific config}.nix (Works on every nixos rebuild)
+  home-manager.users.neck = import ../../users/neck/${computer}.nix;
+
+
+  # I don't know what this code does. Let's call it "magic" and not touch it for now
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -55,23 +57,6 @@ in
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 
     settings.trusted-users = ["sudo" "neck"]; # Who is given sudo permissions
-  };
-
-  networking.hostName = "${computer}";
-
-  # Users specifically on this computer.
-  # In the users directory on this repo, you define specific users.
-  # Defining users seperately allows user-specific packages, and personalized config with stuff like git.
-  users.users = {
-    "neck" = {
-      # TODO: Be sure to change this (using passwd) after rebooting!
-      initialPassword = "e";
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      extraGroups = ["wheel" "dialout"];
-    };
   };
 
   # This setups a SSH server. Very important if you're setting up a headless system.

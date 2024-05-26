@@ -5,11 +5,8 @@ Hash passwords for my account
 Wallpaper should be cool
 Nvim with all of my plugins and configurations that make sense
 Languages: English, Chinese, and Russian.
-Create directories in home directory for all different apps and things (Like:
-Programming, Programs, ProgramData, SecretAndKeys, etc...)
-In this repo, add a secrets directory, and this will have extra users and keys, paths to private files,
-and like hashed passwords or whatever.
-Make default computer and user, compiles without any configuration on all systems
+Create directories in home directory for all different apps and things (Like: Programming, Programs, ProgramData, SecretAndKeys, etc...)
+In this repo, add a secrets directory, and this will have extra users and keys, paths to private files, and like hashed passwords or whatever.
 Update README to use default computer
 Move computers/default/base.nix to computers/base.nix
 Organize system module to have specific Optimizations directory (For laptops, specific CPUs, et cetera.
@@ -22,6 +19,13 @@ Make the Configuration structure part of README more simple
 Refactor instructions for making new computer, and making new user
 Add section in README that explains how to correctly add new part to modules directory
 Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
+Redo structure to include a common/base config for both users and computers
+Get Godot-mono to run (currently c# is limiting it)
+Remove "custom packages" directory (If it's possible) and put it into home
+Each user has it's own base, and a different config based on the computer it's running on (example: users/neck/nixos.nix rather than users/neck/default.nix)
+Use outputs.homeModules rather than importing directly (For git and stuff like that manually import)
+Rename my computer "nixos" to "desktop"
+Update the "amount of hours I spent on this project" to like 56 hr
 
 
 Things that are too hard for how much time they save configuring:
@@ -30,11 +34,16 @@ Make tabs maximize instead of what they do now when you put them at the top of t
 
 
 # Apps I need to install:
-Godot
 ALVR
+Visual Studio (Make it optional)
+GCC
+Minecraft (Modrinth or something close)
+Brave
 
 
 Done:
+Godot
+Make default computer and user, compiles without any configuration on all systems
 Publish this to github
 Explanations for why things are imported / configured / structured that way
 Options for all of the modules in this config. (Like games and development should be able to be turned off)

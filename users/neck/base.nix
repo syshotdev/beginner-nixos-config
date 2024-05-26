@@ -10,10 +10,9 @@ let
   user = "neck";
   nickname = "syshotdev"; # Difference being that user is computer's user, and nickname is what your username online is.
   email = "syshotdev@gmail.com";
-  nvidia = true;
 in {
   imports = [
-    # Disable these imports by either commenting them out or deleting them
+    (import ../base.nix { inherit user pkgs outputs; } ) # Base config for all users
 
     # Why all of these "user nickname email" stuff? For some reason, that's the only way
     # the packages know that they exist. The stuff up top (like inputs, pkgs, ..) get imported anyways
@@ -29,34 +28,9 @@ in {
     discord
     keepassxc
     rhythmbox
-    zoom-us
-
+    
     ferium # Minecraft
 
-    nvidia-system-monitor-qt
     gnome.gnome-system-monitor
-
-    # Distilled this expression means "if nvidia allowed, make blender use it"
-    (if nvidia then (blender.override { cudaSupport = true; }) else blender)
-    obs-studio
-    audacity
   ];
-
-  # Enable home-manager and git (Essential)
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
-
-
-  home = {
-    username = "${user}";
-    homeDirectory = "/home/${user}";
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
 }

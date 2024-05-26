@@ -28,12 +28,14 @@
       "aarch64-darwin"
       "x86_64-darwin"
     ];
+
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
     # What the computer is called, we use it alot so we put it into a variable.
-    computer = "nixos"; 
+    computer = "desktop"; 
+    specialArgs = {inherit inputs outputs computer nixpkgs;};
   in {
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
@@ -52,38 +54,18 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       "${computer}" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs computer;};
+        specialArgs = specialArgs;
         modules = [
+          home-manager.nixosModules.home-manager{
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+          
           ./computers/${computer}/configuration.nix
         ];
       };
     };
 
-    # I want each user to have thier own home packages, and be able to enable/disable packages from
-    # this configuration. However, it seems that we'll have to import home.nix into every single user's
-    # configuration file and that's extra boilerplate that I don't want.
-    # Also, how do I make new users? Do I just put it into users/{name}/default.nix and include it here?
-    # How do I import the username? Idk it's all so confusing
-
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      # Default user. Has everything disabled, but full config to allow easy setting up.
-      "default@${computer}" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs computer;};
-        modules = [
-          ./users/default
-        ];
-      };
-      # My account, has every home package enabled. The name is an inside joke
-      "neck@${computer}" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs computer;};
-        modules = [
-          ./users/neck
-        ];
-      };
-    };
+    # No more home-manager configurations :)
+    # Now computers import users, and users are rebuilt on nixos-rebuild
   };
 }
