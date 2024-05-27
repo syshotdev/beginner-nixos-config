@@ -48,7 +48,8 @@
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
     customPackages = import ./modules/custom-packages;
-    
+
+    overlays = import ./modules/overlays {inherit inputs; };
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#computername'

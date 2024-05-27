@@ -39,6 +39,7 @@
   # Create the users from (root)/users/{name}/{computer-specific config}.nix (Works on every nixos rebuild)
   home-manager.users.neck = import ../../users/neck/${computer}.nix;
 
+  nixpkgs.overlays = [outputs.overlays.unstable-packages]; # I think this adds unstable packages
 
   # I don't know what this code does. Let's call it "magic" and not touch it for now
   nix = let

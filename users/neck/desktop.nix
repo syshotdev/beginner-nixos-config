@@ -21,9 +21,12 @@
     nvidia-system-monitor-qt
 
     file # Package to distinguish appimages
+    appimage-run
 
     # Godot
     (pkgs.callPackage outputs.customPackages.godot4-mono { })
-    (pkgs.callPackage outputs.customPackages.modrinth { })
+
+    # WEBKIT_DISABLE_DMABUF_RENDERER=1
+    unstable.modrinth-app 
   ];
 }

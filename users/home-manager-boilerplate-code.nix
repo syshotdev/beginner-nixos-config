@@ -11,10 +11,16 @@
     homeDirectory = "/home/${user}";
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    # Workaround for https://github.com/nix-community/home-manager/issues/2942
-    allowUnfreePredicate = (_: true); # Ima be honest Idk if it was an issue in the first place
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.unstable-packages # Defined in flake.nix
+    ];
+
+    config = {
+      allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = (_: true); # Ima be honest Idk if it was an issue in the first place
+    };
   };
 
   # Nicely reload system units when changing configs
