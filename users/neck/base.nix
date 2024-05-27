@@ -1,3 +1,4 @@
+# Base configuration of the user "neck", meaning every machine inherits this stuff
 {
   inputs,
   outputs,
@@ -12,7 +13,7 @@ let
   email = "syshotdev@gmail.com";
 in {
   imports = [
-    (import ../base.nix { inherit user pkgs outputs; } ) # Base config for all users
+    (import ../home-manager-boilerplate-code.nix { inherit user pkgs outputs; } ) # Base config for all users
 
     # Why all of these "user nickname email" stuff? For some reason, that's the only way
     # the packages know that they exist. The stuff up top (like inputs, pkgs, ..) get imported anyways

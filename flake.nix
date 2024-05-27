@@ -33,7 +33,7 @@
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    # What the computer is called, we use it alot so we put it into a variable.
+    # I saw a lot of repetitive code, so put it into variables
     computer = "desktop"; 
     specialArgs = {inherit inputs outputs computer nixpkgs;};
   in {
@@ -42,16 +42,16 @@
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
 
-    nixosModules = import ./modules/system;
+    systemModules = import ./modules/system; # Modules for system
+    homeModules = import ./modules/home; # Modules for users
 
-    customPackages = forAllSystems # Custom packages not in the nix repository
-      (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./modules/customPackages { inherit inputs outputs; }
-      );
+    # Custom packages (to be built) not in the nix repository
+    # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
+    customPackages = import ./modules/custom-packages;
+    
 
     # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
+    # Available through 'nixos-rebuild --flake .#computername'
     nixosConfigurations = {
       "${computer}" = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
