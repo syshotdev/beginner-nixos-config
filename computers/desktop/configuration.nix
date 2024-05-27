@@ -22,6 +22,8 @@
     ../base.nix # Base system settings
   ];
 
+  environment.systemPackages = with pkgs; [ appimagekit ];
+
   # Users are defined in the (root)/users/ dir.
   # Defining users separately allows user-specific packages and personalized config like git username.
   users.users = {

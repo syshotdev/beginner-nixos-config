@@ -30,10 +30,11 @@ in {
     keepassxc
     rhythmbox
     
-    ferium # Minecraft
-
     gnome.gnome-system-monitor
 
-    jdk
+
+    # Java for minecraft
+    temurin-jre-bin-21
+    ferium # Minecraft
   ];
 }
