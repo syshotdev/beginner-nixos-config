@@ -2,6 +2,7 @@
 # For anyone trying to implement appimage stuff, wiki:
 # https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-appimageTools
 # And you have to install appimagekit rather than appimageTools
+# And this package isn't used....
 pkgs.appimageTools.wrapType2 { # or wrapType1
   name = "modrinth";
   src = pkgs.fetchurl {

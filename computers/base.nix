@@ -30,9 +30,9 @@
     enable = true; 
   };
 
-   # Disable IPv6
-  #networking.enableIPv6 = false;
-  #boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparantly this helpts
+  # Disable IPv6
+  networking.enableIPv6 = false;
+  boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparantly this helps
 
 
   time.timeZone = "America/Los_Angeles";

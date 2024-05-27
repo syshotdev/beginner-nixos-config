@@ -33,8 +33,5 @@ in {
     gnome.gnome-system-monitor
 
 
-    # Java for minecraft
-    temurin-jre-bin-21
-    ferium # Minecraft
   ];
 }

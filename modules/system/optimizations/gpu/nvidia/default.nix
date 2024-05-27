@@ -11,7 +11,8 @@
     powerManagement.finegrained = false;
   };
 
-  hardware.nvidia.package = let 
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+  /*let 
   rcu_patch = pkgs.fetchpatch {
     url = "https://github.com/gentoo/gentoo/raw/c64caf53/x11-drivers/nvidia-drivers/files/nvidia-drivers-470.223.02-gpl-pfn_valid.patch";
     hash = "sha256-eZiQQp2S/asE7MfGvfe6dA/kdCvek9SYa/FFGp24dVg=";
@@ -25,6 +26,6 @@
     persistencedSha256 = "sha256-11tLSY8uUIl4X/roNnxf5yS2PQvHvoNjnd2CB67e870=";
 
     patches = [ rcu_patch ];
- };
+ };*/
 }
 
