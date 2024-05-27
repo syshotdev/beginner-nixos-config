@@ -1,5 +1,4 @@
-# What's the point of this base.nix if it's already in {specific_user}'s directory?
-# This base.nix is actually for specifically home-manager, so we don't need to type all of this stuff (again)
+# Home-manager boilerplate.
 {user, pkgs, outputs, ...}:
 {
   # Enable home-manager and git (Essential)

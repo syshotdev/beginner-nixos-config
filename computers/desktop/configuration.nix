@@ -17,14 +17,10 @@
     outputs.systemModules.optimizations.nvidia
     outputs.systemModules.steam
 
-    #(let godot4-mono = outputs.customPackages.godot4-mono; in { godot4-mono };) # Won't compile
-
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../base.nix # Base system settings
   ];
-
-  networking.hostName = "${computer}";
 
   # Users are defined in the (root)/users/ dir.
   # Defining users separately allows user-specific packages and personalized config like git username.

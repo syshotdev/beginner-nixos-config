@@ -11,31 +11,30 @@
 }: {
   imports = [
     # Import my pre-configured system modules
-    outputs.nixosModules.cpu # General optimizations
-    outputs.nixosModules.gpu
-    # outputs.nixosModules.steam
+    outputs.systemModules.cpu # General optimizations
+    outputs.systemModules.gpu
+    # outputs.systemModules.steam
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../base.nix # Base system settings
   ];
 
-  # Users specifically on this computer.
-  # In the users directory on this repo, you define specific users.
-  # Defining users seperately allows user-specific packages, and personalized config with stuff like git.
+  # Users are defined in the (root)/users/ dir.
+  # Defining users separately allows user-specific packages and personalized config like git username.
   users.users = {
     "default" = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
+      # TODO: Be sure to change this (using passwd) after rebooting!
       initialPassword = "e";
       isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
       extraGroups = ["wheel" "dialout"];
     };
   };
+
+  # Create the users from (root)/users/{name}/{computer-specific config}.nix (Works on every nixos rebuild)
+  home-manager.users.default = import ../../users/default/${computer}.nix;
+
+  # I don't know what this code does. Let's call it "magic" and not touch it for now
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -55,17 +54,6 @@
     settings.trusted-users = ["sudo" "default"]; # TODO: Replace "default" with your user (if want to execute commands at all with sudo)
   };
 
-  nixpkgs = {
-    # Put overlays here, I just got rid of them because I don't need them
-
-    # Nixpkgs config
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-    };
-  };
-
-  networking.hostName = "${computer}";
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

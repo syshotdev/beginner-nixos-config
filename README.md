@@ -38,38 +38,27 @@ going into the `Documents` folder, cloning this repository, and we compile the c
 
 It's best to understand this structure (To know where to put things) but you can skip over this section.
 
-- flake.nix
-- modules
-  - home
-  - system
+- `flake.nix` is the entrypoint to this configuration, defines nixpkgs source + global variables
+- `modules`, directory with all configured programs
+  - `home` is user-specific packages
+  - `system` is for the entire system
+  - `custom-modules` is things that you can't find at https://search.nixos.org
 
-- computers  (Houses all of the computer-specific configurations)
-  - base.nix (Base settings for all computers)
-  - default
-    - configuration.nix
-  - nixos
-    - configuration.nix
-    - hardware-configuration.nix (Specifically my hardware, in tutorial you'll get your own)
+- `computers` houses all of the computer-specific configurations
+  - `base.nix` is the base settings for all computers (like boot preferences, timezone, etc)
+  - `default` is a computer named `default`.
+    - `configuration.nix` is machine-specific configuration, imports users and sets up the machine
+  - `nixos` next 3 lines is same as last 2
+    - `configuration.nix`
+    - `hardware-configuration.nix (Specifically my hardware, in tutorial you'll get your own)`
 
-- users
-  - default
-    - default.nix
-  - neck
-    - default.nix
-
-Here's how to read this:
-Each bullet point has a file, and anything to the right and down of that file is imported.
-
-
-- The `modules` directory has two parts. `home` and `system`.
-- `home` is all of the packages that can be imported via *home-manager*,
-- and `system` is stuff that configures the system as a whole, like drivers and desktop environments.
-
-From computers, `configuration.nix` imports modules for the entire system, like drivers and system-level packages. 
-It also defines what users it uses on the system.
-
-`users` is a directory that has configurations for specific users, like username, packages, and
-user-specific configurations.
+- `users` all of the users for the specific computers
+  - `default` is configuration dir for the user `default`
+    - `base.nix` all computers share this configuration file
+    - `default.nix` a user configuration specifically for a computer named `default`
+  - `neck` is configuration dir for user `neck`
+    - `base.nix` blah blah blah
+    - `desktop.nix`
 
 Each main folder will (in the future) have a README with more information about it's purpose.
 
@@ -80,13 +69,13 @@ Assuming you are cd'ed in the "nixos-config" directory, you can run these comman
 ```bash
 cd computers/
 mkdir COMPUTER_NAME
-cp nixos/configuration.nix COMPUTER_NAME
+cp default/configuration.nix COMPUTER_NAME
 ```
 To explain what these commands do:
 - `cd` goes into a directory, this case the *computers* directory
 - `mkdir` (mk)es (dir)ectory, calls it whatever you specified
 - `cp` means *copy*, and it takes a source path and a destination path 
-This use of `cp` copies my configuration.nix to your computer's configuration folder
+This use of `cp` copies the default configuration.nix to your computer's configuration folder
 
 Now you need to add your hardware-configuration.nix to your computer configuration.
 Usually your hardware-configuration is located at `/etc/nixos/` but maybe your computer is different.
@@ -106,14 +95,16 @@ computer = "COMPUTER_NAME";
 ## Defining a new user
 
 To add a new user, cd into the `users` directory and copy the default.
-(Replace USERNAME with the username that you want)
+(Replace USERNAME with the username that you want, COMPUTER_NAME with your computer name)
 ```bash
 cd users/
-cp -r default USERNAME
+mkdir USERNAME
+cp default/default.nix USERNAME/COMPUTER_NAME.nix
+cp default/base.nix USERNAME
 ```
 
-Now, edit the text inside of the USERNAME/default.nix
-You'll find lines named user, nickname, and email. Fill those in.
+Now, edit the text inside of the USERNAME/base.nix
+You'll find lines named user, nickname, and email. Fill those in and save the file.
 ```nix
 # USERNAME.nix
 
@@ -123,34 +114,24 @@ nickname = "Ilovecats0013";
 email = "default@default.com";
 ```
 
-Nickname means online name, which could be the same as your computer USERNAME.
-
-Save the file.
+In the other file USERNAME/COMPUTER_NAME.nix (basically a computer-specific configuration),
+you can import/add new packages for that specific user/computer combo.
 
 ```bash
 cd .. # Go to the top folder for next instruction
 ```
-
-Next, in flake.nix, edit the file and find the line named homeConfigurations
-```nix
-# flake.nix
-homeConfigurations = {
-  ...
-}
-```
-Copy the `"default@${computer}"` all the way to the curly bracket after `modules`,
-and paste it back into homeConfigurations as it looks now.
-Rename all *default*'s in your new copied code to what your USERNAME is.
-
 Lastly, edit your computer's configuration.nix and find the lines where users.users is defined.
+Replace any mention of "default" with your USERNAME.
+
 ```nix
 users.users = {
-  "neck" = {
+  "default" = {
     ...
   };
 };
+
+home-manager.users.default = import ../../users/default/${computer}.nix;
 ```
-You can replace the "neck" with your USERNAME, or make a new user with your USERNAME.
 
 ## Applying the configuration
 
@@ -164,25 +145,17 @@ nix --version
 export NIX_CONFIG="experimental-features = nix-command flakes"
 ```
 
-- Run `sudo nixos-rebuild switch --flake .#computer` to apply your system
-  configuration.
-- Run `home-manager switch --flake .#username@computer` to apply your home
-  configuration.
-  - If you don't have home-manager installed, try `nix shell nixpkgs#home-manager`.
+- Run `sudo nixos-rebuild switch --flake .#computer` to apply your system and user configurations
 
 ## Changing packages per-user
 
-Go into the users/USERNAME/default.nix and you'll find `imports`.
+Go into the users/USERNAME/COMPUTER_NAME and you'll find `imports`.
 Or for packages that you don't need to configure: `home.packages` and [add any package you want.](https://search.nixos.org)
 
 ## Adding modules in an organized way
 
-Modules are configurations to your system like a new package, configuration to a package, configuration
-to the system (like boot options), themes, etc. Since modules are *modular*, you can enable/disable them
-very easily.
-
-However, since they have an enable option and disable option, they take more code to include and organize.
+TODO: add an actual instructions here
 
 
 
-## Total hours spent: like 50 hr
+## Total hours spent: like 60 hr
