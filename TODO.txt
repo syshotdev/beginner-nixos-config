@@ -7,25 +7,13 @@ Nvim with all of my plugins and configurations that make sense
 Languages: English, Chinese, and Russian.
 Create directories in home directory for all different apps and things (Like: Programming, Programs, ProgramData, SecretAndKeys, etc...)
 In this repo, add a secrets directory, and this will have extra users and keys, paths to private files, and like hashed passwords or whatever.
-Update README to use default computer
-Move computers/default/base.nix to computers/base.nix
-Organize system module to have specific Optimizations directory (For laptops, specific CPUs, et cetera.
 Add AMD support
-Submit question to Nixos form regarding home-manager and enabling / disabling configurations.
-Organize user "neck"s packages (since there are like more than 10 now and it's growing)
 Test new and improved configuration by installing on old laptop
 Find out what was lagging Firefox and giving super long loading times
-Make the Configuration structure part of README more simple
-Refactor instructions for making new computer, and making new user
 Add section in README that explains how to correctly add new part to modules directory
 Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
-Redo structure to include a common/base config for both users and computers
 Get Godot-mono to run (currently c# is limiting it)
-Remove "custom packages" directory (If it's possible) and put it into home
-Each user has it's own base, and a different config based on the computer it's running on (example: users/neck/nixos.nix rather than users/neck/default.nix)
 Use outputs.homeModules rather than importing directly (For git and stuff like that manually import)
-Rename my computer "nixos" to "desktop"
-Update the "amount of hours I spent on this project" to like 56 hr
 
 
 Things that are too hard for how much time they save configuring:
@@ -42,6 +30,16 @@ Brave
 
 
 Done:
+Submit question to Nixos form regarding home-manager and enabling / disabling configurations.
+Organize system module to have specific Optimizations directory (For laptops, specific CPUs, et cetera.
+Move computers/default/base.nix to computers/base.nix
+Make the Configuration structure part of README more simple
+Refactor instructions for making new computer, and making new user
+Redo structure to include a common/base config for both users and computers
+Each user has it's own base, and a different config based on the computer it's running on (example: users/neck/nixos.nix rather than users/neck/default.nix)
+Rename my computer "nixos" to "desktop"
+Update the "amount of hours I spent on this project" to like 56 hr (Actually like 60 hr at time of writing)
+Update README to use default computer
 Godot
 Make default computer and user, compiles without any configuration on all systems
 Publish this to github
@@ -53,3 +51,7 @@ Easy to navigate around this config
 Restructure into modules and rename to make sense
 Give credits to all the people I "borrowed" code from
 Separate all CPU optimizations for AMD, Intel, and Laptop.
+
+Nah:
+Organize user "neck"s packages (since there are like more than 10 now and it's growing)
+Remove "custom packages" directory (If it's possible) and put it into home

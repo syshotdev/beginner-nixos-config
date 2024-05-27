@@ -33,5 +33,7 @@ in {
     ferium # Minecraft
 
     gnome.gnome-system-monitor
+
+    jdk
   ];
 }
