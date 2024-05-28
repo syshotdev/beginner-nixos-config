@@ -11,8 +11,8 @@
 }: {
   imports = [
     # Import my pre-configured system modules
-    outputs.systemModules.cpu # General optimizations
-    outputs.systemModules.gpu
+    outputs.systemModules.optimizations.cpu # General optimizations
+    outputs.systemModules.optimizations.gpu
     # outputs.systemModules.steam
 
     # Import your generated (nixos-generate-config) hardware configuration

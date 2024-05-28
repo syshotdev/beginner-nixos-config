@@ -34,7 +34,7 @@
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
     # I saw a lot of repetitive code, so put it into variables
-    computer = "desktop"; 
+    computer = "default"; 
     specialArgs = {inherit inputs outputs computer nixpkgs;};
   in {
     # Formatter for your nix files, available through 'nix fmt'
