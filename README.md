@@ -11,6 +11,43 @@ Some links that may be of use:
 - https://github.com/EmergentMind/nix-config (Documented(ish) nix config)
 - https://github.com/MattCairns/nixos-config (I stole stuff from his repo)
 
+## Features
+
+- Mostly documented
+- Flakes (I still don't know what this means)
+- Optional unstable packages (for more up-to-date packages)
+- Home-manager for user-specific configurations
+- Computer-specific configurations
+- Custom-package examples
+  - Appimage
+  - From github
+- Neatly organized modules
+  - System stuff (drivers, system theme, system-wide programs, etc.)
+  - User stuff (git, neovim, user-specific options) 
+  - Overlays (Only used for unstable-packages)
+  - Custom-packages (Examples of grabbing from online and building)
+- A sensible file structure
+- Simple (as much as feasible)
+- A quickstart
+
+
+# Specific modules
+- A configured Neovim
+- Automatically setting up git
+- Steam
+- GPU drivers
+  - You manually import these
+- CPU optimizations 
+  - (Just so you know most Linux distros have these automatically, not NixOS)
+- Other things
+
+# (Import these from users/neck configs)
+- Minecraft (kinda)
+- Godot-mono 4.2
+- Many programs from https://search.nixos.org
+
+I have a TODO.txt in this repo if you're curious.
+
 ## General configuration quickstart
 
 Notes: 
@@ -27,7 +64,6 @@ cd nixos-config
 nixos-generate-config
 cp /etc/nixos/hardware-configuration.nix computers/default
 sudo nixos-rebuild switch --flake .#default
-home-manager switch --flake .#default@default
 ```
 
 To explain what's happening here, we're making sure we have dependencies to compile nixos,
@@ -43,6 +79,7 @@ It's best to understand this structure (To know where to put things) but you can
   - `home` is user-specific packages
   - `system` is for the entire system
   - `custom-modules` is things that you can't find at https://search.nixos.org
+  - `overlays` is currently just for unstable packages (actual use is `overlaying` patches onto whatever)
 
 - `computers` houses all of the computer-specific configurations
   - `base.nix` is the base settings for all computers (like boot preferences, timezone, etc)
@@ -158,4 +195,4 @@ TODO: add an actual instructions here
 
 
 
-## Total hours spent: like 60 hr
+## Total hours spent: like 67 hr
