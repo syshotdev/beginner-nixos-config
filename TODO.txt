@@ -24,7 +24,7 @@ Make tabs maximize instead of what they do now when you put them at the top of t
 # Apps I need to install:
 ALVR
 Visual Studio (Make it optional)
-GCC
+GCC # Honestly I can just make the dev environment
 Minecraft (Modrinth or something close)
 Brave
 

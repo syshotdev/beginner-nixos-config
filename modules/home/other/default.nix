@@ -1,5 +1,3 @@
-{...}:
 {
-  #firefox = import ./firefox;
-  imports = [./firefox];
+  firefox = import ./firefox;
 }

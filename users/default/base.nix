@@ -14,28 +14,18 @@ let
   email = "default@default.com";
 in {
   imports = [
-    (import ../home-manager-boilerplate-code.nix { inherit user pkgs outputs; } ) # Required
-
     # Disable these imports by either commenting them out or deleting them
 
-    # Why all of these "user nickname email" stuff? For some reason, that's the only way
-    # the packages know that the imports exist.
-    (import ../../modules/home/art { inherit user nickname email; })
-    (import ../../modules/home/communication { inherit user nickname email; })
-    (import ../../modules/home/development { inherit user nickname email lib; })
-    (import ../../modules/home/sound { inherit user nickname email; })
-    (import ../../modules/home/other { inherit user nickname email; })
+    # The 'inherit user nickname ...;' syntax basically imports the variables for the packages to use.
+    (import ../home-manager-boilerplate-code.nix { inherit user pkgs outputs; } ) # Required, no remove
+
+    (import outputs.homeModules.development.git { inherit user nickname email lib; })
+    outputs.homeModules.development.neovim
+    outputs.homeModules.other.firefox
   ];
 
   # This is for adding packages that you don't need to configure through .nix files
-  # https://search.nixos.org for packages
   home.packages = with pkgs; [ 
-    # discord
+    #discord
   ];
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
 }

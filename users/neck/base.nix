@@ -13,25 +13,20 @@ let
   email = "syshotdev@gmail.com";
 in {
   imports = [
+    # The 'inherit user nickname ...;' syntax basically imports the variables for the packages to use.
     (import ../home-manager-boilerplate-code.nix { inherit user pkgs outputs; } )
 
-    # Why all of these "user nickname email" stuff? For some reason, that's the only way
-    # the packages know that they exist. The stuff up top (like inputs, pkgs, ..) get imported anyways
-    (import ../../modules/home/art { inherit user nickname email; })
-    (import ../../modules/home/communication { inherit user nickname email; })
-    (import ../../modules/home/development { inherit user nickname email lib outputs inputs; })
-    (import ../../modules/home/sound { inherit user nickname email; })
-    (import ../../modules/home/other { inherit user nickname email; })
+    (import outputs.homeModules.development.git { inherit user nickname email lib; })
+    outputs.homeModules.development.neovim
+    outputs.homeModules.other.firefox
   ];
 
   # This is for adding packages that you don't need to configure through .nix files
   home.packages = with pkgs; [ 
     discord
-    keepassxc
-    rhythmbox
+    keepassxc # Password manager
+    rhythmbox # Music player
     
-    gnome.gnome-system-monitor
-
-
+    gnome.gnome-system-monitor # Task manager for linux
   ];
 }

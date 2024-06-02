@@ -14,15 +14,12 @@
     outputs.systemModules.optimizations.cpu
     outputs.systemModules.optimizations.gpu
     outputs.systemModules.optimizations.intelCPU
-    outputs.systemModules.optimizations.nvidia
-    outputs.systemModules.steam
+    # outputs.systemModules.steam # Compile when needed
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../base.nix # Base system settings
   ];
-
-  #environment.systemPackages = with pkgs; [ appimagekit ];
 
   # Users are defined in the (root)/users/ dir.
   # Defining users separately allows user-specific packages and personalized config like git username.
@@ -44,10 +41,10 @@
   /*system.activationScripts.minecraft = ''
   WEBKIT_DISABLE_DMABUF_RENDERER=1
   WEBKIT_DISABLE_COMPOSITING_MODE=1
+  LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+  export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
+  MESA_GL_VERSION_OVERRIDE=2.1
   '';*/
-  #LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-  #export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
-  #MESA_GL_VERSION_OVERRIDE=2.1
 
   nixpkgs.overlays = [outputs.overlays.unstable-packages]; # I think this adds unstable packages
 

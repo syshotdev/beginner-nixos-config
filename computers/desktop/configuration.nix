@@ -40,14 +40,15 @@
   home-manager.users.neck = import ../../users/neck/${computer}.nix;
   
   # Extra commands to get minecraft running (I'd put this into user, but Idk how to)
-  # Also doesn't work: "GLX error blah blah update your drivers"
+  # Also doesn't work: "GLX error blah blah update your drivers" (Fixed by garbage collecting Java and reinstalling it)
   /*system.activationScripts.minecraft = ''
   WEBKIT_DISABLE_DMABUF_RENDERER=1
   WEBKIT_DISABLE_COMPOSITING_MODE=1
-  '';*/
-  #LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
-  #export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
-  #MESA_GL_VERSION_OVERRIDE=2.1
+  LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+  export LD_LIBRARY_PATH=$(nix build --print-out-paths --no-link nixpkgs#libGL)/lib
+  MESA_GL_VERSION_OVERRIDE=2.1
+  '';
+  */
 
   nixpkgs.overlays = [outputs.overlays.unstable-packages]; # I think this adds unstable packages
 
