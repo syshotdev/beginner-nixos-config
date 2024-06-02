@@ -63,6 +63,13 @@ git clone https://github.com/syshotdev/beginner-nixos-config.git nixos-config
 cd nixos-config
 nixos-generate-config
 cp /etc/nixos/hardware-configuration.nix computers/default
+git add .
+```
+
+It's at this point that you should edit your flake.nix file, and find the line named "computer".
+Change that line to (computer="default") and run the last commands.
+
+```bash
 sudo nixos-rebuild switch --flake .#default
 ```
 
@@ -181,6 +188,9 @@ Here they are now, you can run them (hopefully) without any hiccups.
 nix --version
 export NIX_CONFIG="experimental-features = nix-command flakes"
 ```
+
+**Note:** home-manager is git sensitive. Do `git add .` in the commandline to make sure it understands
+your new files/changes
 
 - Run `sudo nixos-rebuild switch --flake .#computer` to apply your system and user configurations
 
