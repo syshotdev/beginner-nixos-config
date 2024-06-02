@@ -13,7 +13,7 @@ Find out what was lagging Firefox and giving super long loading times
 Add section in README that explains how to correctly add new part to modules directory
 Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
 Get Godot-mono to run (currently c# is limiting it)
-Use outputs.homeModules rather than importing directly (For git and stuff like that manually import)
+Screenshot with WIN + SHIFT + S
 
 
 Things that are too hard for how much time they save configuring:
@@ -25,11 +25,12 @@ Make tabs maximize instead of what they do now when you put them at the top of t
 ALVR
 Visual Studio (Make it optional)
 GCC # Honestly I can just make the dev environment
-Minecraft (Modrinth or something close)
 Brave
 
 
 Done:
+Minecraft (Modrinth or something close)
+Use outputs.homeModules rather than importing directly (For git and stuff like that manually import) # I didn't even have to manually import it!
 Submit question to Nixos form regarding home-manager and enabling / disabling configurations.
 Organize system module to have specific Optimizations directory (For laptops, specific CPUs, et cetera.
 Move computers/default/base.nix to computers/base.nix
