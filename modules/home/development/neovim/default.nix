@@ -15,8 +15,10 @@ in{
     vimAlias = true;
 
     extraLuaConfig = ''
-      ${builtins.readFile config/keymaps.lua}
+      -- Remember to put options in front of keymaps, as leader key won't work!
+      -- https://neovim.discourse.group/t/how-to-set-leader-key-in-lua/175/3
       ${builtins.readFile config/options.lua}
+      ${builtins.readFile config/keymaps.lua}
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -52,6 +54,9 @@ in{
       }
       nvim-treesitter.withAllGrammars
       vim-nix
+
+      # Tree structure on the side with nvim-tree
+      nvim-tree-lua
 
 
       # File searching via telescope

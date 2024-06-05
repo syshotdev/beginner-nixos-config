@@ -26,6 +26,7 @@
     pinta # MS paint but linux
 
     # Godot
+    mono
     (pkgs.callPackage outputs.customPackages.godot4-mono { })
 
     # ---------- MINECRAFT -----------

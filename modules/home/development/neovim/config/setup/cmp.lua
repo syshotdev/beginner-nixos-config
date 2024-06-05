@@ -9,7 +9,10 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end,
   },
-  -- Honestly I don't know what this means
+  -- Set all the keybinds:
+  -- Scrolling docs (Idk what that means)
+  -- Tab to complete selection
+  -- Up/Down to choose which one is correct
   mapping = {
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),

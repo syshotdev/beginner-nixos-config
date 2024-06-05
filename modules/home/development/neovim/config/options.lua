@@ -1,18 +1,30 @@
+-- Btw this was a config that I basically stole from MattCairnes's Nixos config.
+
+-- Set no wrapping of text and <leader> key
 vim.cmd [[
     set nowrap
     let mapleader = " "
 ]]
 
--- QOL settings
+
+---------- QOL settings ----------
+
+-- Working directories 
 HOME = os.getenv("HOME")
 vim.opt.backupdir = HOME .. '/.config/nvim/tmp/backup_files/'
 vim.opt.directory = HOME .. '/.config/nvim/tmp/swap_files/'
 vim.opt.undodir = HOME .. '/.config/nvim/tmp/undo_files/'
+
+-- Indentation, how big in spaces and is it spaces and do I indent in functions?
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+
+-- No idea
 vim.opt.scrolloff=10
+
+-- Uhhh when you make a tab it opens to the right and bottom
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
@@ -21,11 +33,26 @@ vim.opt.number = true
 vim.opt.numberwidth = 1
 vim.opt.relativenumber = true
 
--- To make things easier, you can also have the text you copy in Neovim always copied to the system
--- clipboard by adding the following in your ~/.config/nvim/init.vim:
+-- Clipboard for neovim (unnamedplus means system or whatever)
 vim.opt.clipboard = 'unnamedplus'
 
 
+---------- File tree ----------
+
+-- Vim file tree disable
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour (For nvim-tree)
+vim.opt.termguicolors = true
+
+-- Nvim tree for file explorer
+require("nvim-tree").setup()
+
+
+---------- Other things that I didn't implement ----------
+
+-- Don't know what this means
 vim.opt.colorcolumn = '100'
 
 vim.cmd([[
