@@ -1,6 +1,7 @@
--- THEME
-vim.opt.termguicolors = true
-vim.opt.background='dark'
+vim.cmd [[
+    set nowrap
+    let mapleader = " "
+]]
 
 -- QOL settings
 HOME = os.getenv("HOME")
@@ -14,9 +15,17 @@ vim.opt.smartindent = true
 vim.opt.scrolloff=10
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+-- Line numbers stuff
+vim.opt.number = true
+vim.opt.numberwidth = 1
 vim.opt.relativenumber = true
+
+-- To make things easier, you can also have the text you copy in Neovim always copied to the system
+-- clipboard by adding the following in your ~/.config/nvim/init.vim:
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.wrap = false
+
+
 vim.opt.colorcolumn = '100'
 
 vim.cmd([[
@@ -35,7 +44,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ LSP Diagnostics ]]
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -46,5 +55,5 @@ vim.diagnostic.config({
 })
 -- You will likely want to reduce updatetime which affects CursorHold
 -- note: this setting is global and should be set only once
-vim.o.updatetime = 500
+vim.o.updatetime = 100
 vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

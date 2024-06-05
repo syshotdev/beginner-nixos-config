@@ -6,11 +6,12 @@ require('telescope').setup{
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
     },
+    --[[
     project = {
       base_dirs = {
         {'~/dev/oor/core/subsystems', max_depth = 2},
       },
-    }
+    }]]--
   }
 }
 

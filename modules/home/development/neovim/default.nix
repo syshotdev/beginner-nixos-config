@@ -1,244 +1,114 @@
+# This file was inspired by Matt Cairn's config on github, go check him out for a more full config
 {
   pkgs,
-  lib,
   ...
-}: let
-  fromGitHub = rev: ref: repo:
-    pkgs.vimUtils.buildVimPlugin {
-      pname = "${lib.strings.sanitizeDerivationName repo}";
-      version = ref;
-      src = builtins.fetchGit {
-        url = "https://github.com/${repo}.git";
-        ref = ref;
-        rev = rev;
-      };
-    };
-in {
-  home.packages = with pkgs; [
-    vscode-extensions.ms-vscode.cpptools
-    vscode-extensions.vadimcn.vscode-lldb
-  ];
-  programs = {
-    neovim = {
-      plugins = [
-        ## Theme
-        {
-          plugin = pkgs.vimPlugins.tokyonight-nvim;
-          config = "vim.cmd[[colorscheme tokyonight-night]]";
-          type = "lua";
-        }
+}:
+let 
+  # Shorthand for adding plugins (Not finished)
+  #addPlugin = plugin: config: {plugin = pkgs.vimPlugins.plugin; config = config};
+in{
+  programs.neovim = {
+    enable = true;
 
-        ## Treesitter
-        {
-          plugin = pkgs.vimPlugins.nvim-treesitter;
-          config = builtins.readFile config/setup/treesitter.lua;
-          type = "lua";
-        }
-        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-        pkgs.vimPlugins.nvim-treesitter-textobjects
-        {
-          plugin = pkgs.vimPlugins.nvim-lspconfig;
-          config = builtins.readFile config/setup/lspconfig.lua;
-          type = "lua";
-        }
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
 
-        pkgs.vimPlugins.plenary-nvim
+    extraLuaConfig = ''
+      ${builtins.readFile config/keymaps.lua}
+      ${builtins.readFile config/options.lua}
+    '';
 
-        ## Telescope
-        {
-          plugin = pkgs.vimPlugins.telescope-nvim;
-          config = builtins.readFile config/setup/telescope.lua;
-          type = "lua";
-        }
-        pkgs.vimPlugins.telescope-fzf-native-nvim
-        pkgs.vimPlugins.harpoon
-
-        ## cmp
-        {
-          plugin = pkgs.vimPlugins.nvim-cmp;
-          config = builtins.readFile config/setup/cmp.lua;
-          type = "lua";
-        }
-        pkgs.vimPlugins.cmp-nvim-lsp
-        pkgs.vimPlugins.cmp-buffer
-        pkgs.vimPlugins.cmp-cmdline
-        pkgs.vimPlugins.cmp_luasnip
-
-        ## Tpope
-        pkgs.vimPlugins.vim-surround
-        pkgs.vimPlugins.vim-sleuth
-        pkgs.vimPlugins.vim-repeat
-        {
-          plugin = fromGitHub "afd76df166ed0f223ede1071e0cfde8075cc4a24" "main" "TabbyML/vim-tabby";
-          config = ''
-            vim.cmd([[
-              let g:tabby_keybinding_accept = '<Tab>'
-            ]])
-          '';
-          type = "lua";
-        }
-
-        ## QoL
-        pkgs.vimPlugins.lspkind-nvim
-        pkgs.vimPlugins.rainbow
-        pkgs.vimPlugins.nvim-web-devicons
-        pkgs.vimPlugins.surround-nvim
-        pkgs.vimPlugins.lazygit-nvim
-        pkgs.vimPlugins.nvim-code-action-menu
-        {
-          plugin = pkgs.vimPlugins.neorg;
-          config = builtins.readFile config/setup/neorg.lua;
-          type = "lua";
-        }
-        {
-          plugin = fromGitHub "6218a401824c5733ac50b264991b62d064e85ab2" "main" "m-demare/hlargs.nvim";
-          config = "require('hlargs').setup()";
-          type = "lua";
-        }
-        {
-          plugin = fromGitHub "4c3bc2cd46085b36b2873c1ae9086aee404b3d90" "main" "apple/pkl-neovim";
-        }
-        {
-          plugin = fromGitHub "1764a8d8c25d7f6de58953362e7de79d3b3d970e" "main" "epwalsh/obsidian.nvim";
-          config = ''
-            require("obsidian").setup({
-              workspaces = {
-                {
-                  name = "notes",
-                  path = "~/dev/notes",
-                },
-              },
-            })
-          '';
-          type = "lua";
-        }
-        (fromGitHub "f30f899c30d91bb35574ff5962103f00cc4ea23a" "main" "MattCairns/telescope-cargo-workspace.nvim")
-        {
-          plugin = pkgs.vimPlugins.oil-nvim;
-          config = "require('oil').setup()";
-          type = "lua";
-        }
-        {
-          plugin = pkgs.vimPlugins.fidget-nvim;
-          config = "require('fidget').setup{}";
-          type = "lua";
-        }
-        {
-          plugin = pkgs.vimPlugins.trouble-nvim;
-          config = "require('trouble').setup {}";
-          type = "lua";
-        }
-        {
-          plugin = pkgs.vimPlugins.luasnip;
-          config = builtins.readFile config/setup/luasnip.lua;
-          type = "lua";
-        }
-        {
-          plugin = pkgs.vimPlugins.comment-nvim;
-          config = "require('Comment').setup()";
-          type = "lua";
-        }
-        {
-          plugin = pkgs.vimPlugins.gitsigns-nvim;
-          config = "require('gitsigns').setup()";
-          type = "lua";
-        }
-        {
-          plugin = pkgs.vimPlugins.lualine-nvim;
-          config = ''
-            require('lualine').setup {
-                options = {
-                    theme = 'tokyonight',
-                }
+    plugins = with pkgs.vimPlugins; [
+      # Colorscheme
+      { 
+        plugin = tokyonight-nvim;
+        config = "vim.cmd[[colorscheme tokyonight-night]]";
+      	type = "lua";
+      }
+      {
+        plugin = lualine-nvim;
+        config = "
+          require('lualine').setup {
+            options = {
+              theme = 'tokyonight',
             }
-          '';
-          type = "lua";
-        }
-        {
-          plugin = pkgs.vimPlugins.noice-nvim;
-          config = ''
-            require("noice").setup({
-              lsp = {
-                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-                override = {
-                  ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                  ["vim.lsp.util.stylize_markdown"] = true,
-                  ["cmp.entry.get_documentation"] = true,
-                },
-              },
-              -- you can enable a preset for easier configuration
-              presets = {
-                bottom_search = true, -- use a classic bottom cmdline for search
-                command_palette = true, -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = false, -- add a border to hover docs and signature help
-              },
-            })
-          '';
-          type = "lua";
-        }
+          }
+        ";
+	      type = "lua";
+      }
 
-        ## Debugging
-        pkgs.vimPlugins.nvim-dap-ui
-        pkgs.vimPlugins.nvim-dap-virtual-text
-        {
-          plugin = pkgs.vimPlugins.nvim-dap;
-          config = builtins.readFile config/setup/dap.lua;
-          type = "lua";
-        }
-        {
-          plugin = pkgs.vimPlugins.rustaceanvim;
-          config = ''
-            vim.g.rustaceanvim = {
-              -- Plugin configuration
-              tools = {
-              },
-              -- LSP configuration
-              server = {
-                on_attach = function(client, bufnr)
-                  -- you can also put keymaps in here
-                end,
-                settings = {
-                  -- rust-analyzer language server configuration
-                  ['rust-analyzer'] = {
-                   cargo = {
-                      allFeatures = true,
-                      loadOutDirsFromCheck = true,
-                      runBuildScripts = true,
-                    },
-                    checkOnSave = {
-                      allFeatures = true,
-                      command = "clippy",
-                      extraArgs = { "--no-deps" },
-                    },
-                    procMacro = {
-                      enable = true,
-                      ignored = {
-                        ["async-trait"] = { "async_trait" },
-                        ["napi-derive"] = { "napi" },
-                        ["async-recursion"] = { "async_recursion" },
-                      },
-                    },
-                  },
-                },
-              },
-              -- DAP configuration
-              dap = {
-              },
-            }
-          '';
-          type = "lua";
-        }
-      ];
+      # Nvim-tree stuff (file explorer I think)
+      nvim-web-devicons
 
-      extraLuaConfig = ''
-        ${builtins.readFile config/mappings.lua}
-        ${builtins.readFile config/options.lua}
-      '';
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-    };
+
+      # Syntax highlighting
+      {
+        plugin = nvim-treesitter;
+        config = ''
+          require('nvim-treesitter.configs').setup {}
+        '';
+        type = "lua";
+      }
+      nvim-treesitter.withAllGrammars
+      vim-nix
+
+
+      # File searching via telescope
+      {
+        plugin = telescope-nvim;
+        config = builtins.readFile config/setup/telescope.lua;
+	      type = "lua";
+      }
+      telescope-fzf-native-nvim # To fix fuzzy finding to be better
+      
+
+      # What buttons do I press to do a command again?
+      {
+        plugin = which-key-nvim;
+        config = ''require("which-key").setup {}'';
+	      type = "lua";
+      }
+
+      # Signs for git
+      {
+        plugin = gitsigns-nvim;
+        config = ''require("gitsigns").setup {}'';
+	      type = "lua";
+      }
+
+      # Make it easier to pair up brackets [] and (){}<>
+      {
+        plugin = nvim-autopairs;
+        config = ''require("nvim-autopairs").setup {}'';
+	      type = "lua";
+      }
+
+      # LSP stuff (autocompletion)
+      {
+        plugin = nvim-lspconfig;
+        config = builtins.readFile config/setup/lspconfig.lua;
+	      type = "lua";
+      }
+      {
+        plugin = nvim-cmp;
+        config = builtins.readFile config/setup/cmp.lua;
+	      type = "lua";
+      }
+      cmp-nvim-lsp
+      luasnip
+    ];
   };
+
+  home.packages = with pkgs; [
+    xsel # Add things to clipboard
+
+    rust-analyzer
+    jdt-language-server
+    gdtoolkit
+    lua-language-server
+
+    # Packages that are required as dependencies
+    gcc
+  ];
 }
