@@ -55,7 +55,8 @@ in{
       }
       nvim-treesitter.withAllGrammars
       vim-nix
-      vim-godot # Better syntax-highlighting and indenting for Godot.
+      # TODO: Update to 24.05
+      #vim-godot # Better syntax-highlighting and indenting for Godot.
 
       # Tree structure on the side with nvim-tree
       nvim-tree-lua
@@ -114,6 +115,7 @@ in{
     jdt-language-server
     gdtoolkit
     lua-language-server
+    csharp-ls
 
     # Packages that are required as dependencies
     gcc
