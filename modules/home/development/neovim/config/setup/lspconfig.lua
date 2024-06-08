@@ -1,7 +1,7 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'dockerls', 'lua_ls', 'vimls', 'csharp_ls', 'gdscript', 'gradle_ls', 'jdtls', 'rust_analyzer' }
+local servers = { 'gdscript', 'dockerls', 'lua_ls', 'vimls', 'csharp_ls', 'gradle_ls', 'jdtls', 'rust_analyzer' }
 
 -- For every server, add these keymaps
 for _, lsp in ipairs(servers) do

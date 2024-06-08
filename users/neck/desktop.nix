@@ -26,7 +26,7 @@
     pinta # MS paint but linux
 
     # Godot
-    mono
+    dotnet-sdk # To run godot
     (pkgs.callPackage outputs.customPackages.godot4-mono { })
 
     # ---------- MINECRAFT -----------

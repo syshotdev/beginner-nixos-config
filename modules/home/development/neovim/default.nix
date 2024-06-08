@@ -19,6 +19,7 @@ in{
       -- https://neovim.discourse.group/t/how-to-set-leader-key-in-lua/175/3
       ${builtins.readFile config/options.lua}
       ${builtins.readFile config/keymaps.lua}
+      ${builtins.readFile config/setup/gdscript.lua} -- Set up GDScript for Godot
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -54,6 +55,7 @@ in{
       }
       nvim-treesitter.withAllGrammars
       vim-nix
+      vim-godot # Better syntax-highlighting and indenting for Godot.
 
       # Tree structure on the side with nvim-tree
       nvim-tree-lua
