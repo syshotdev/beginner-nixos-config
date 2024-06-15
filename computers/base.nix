@@ -123,7 +123,8 @@
     firefox
     rhythmbox
     wget
+    ripgrep
   ];
 
-  system.stateVersion = "23.11"; # Version of system
+  system.stateVersion = "24.05"; # Version of system
 }

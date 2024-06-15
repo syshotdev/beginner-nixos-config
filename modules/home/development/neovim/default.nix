@@ -55,8 +55,7 @@ in{
       }
       nvim-treesitter.withAllGrammars
       vim-nix
-      # TODO: Update to 24.05
-      #vim-godot # Better syntax-highlighting and indenting for Godot.
+      vim-godot # Better syntax-highlighting and indenting for Godot.
 
       # Tree structure on the side with nvim-tree
       nvim-tree-lua
@@ -112,7 +111,7 @@ in{
     xsel # Add things to clipboard
 
     rust-analyzer
-    jdt-language-server
+    jdtls
     gdtoolkit
     lua-language-server
     csharp-ls
