@@ -111,7 +111,7 @@ in{
     xsel # Add things to clipboard
 
     rust-analyzer
-    jdtls
+    jdt-language-server
     gdtoolkit
     lua-language-server
     csharp-ls
