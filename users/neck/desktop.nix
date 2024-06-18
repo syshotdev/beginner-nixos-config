@@ -16,6 +16,9 @@
     obs-studio
     audacity
 
+    # VR
+    alvr
+
     # Nvidia specific stuff
     (blender.override { cudaSupport = true; })
     nvidia-system-monitor-qt
@@ -35,7 +38,8 @@
     #temurin-jre-bin-21 # Java runtime, not needed rn but maybe useful
     #unstable.jdk22
     #zulu17
-    jdk17
+    #jdk17
+    jdk21_headless
 
     # WEBKIT_DISABLE_DMABUF_RENDERER=1
     # WEBKIT_DISABLE_COMPOSITING_MODE=1
