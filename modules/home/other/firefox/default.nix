@@ -29,9 +29,9 @@ in {
           Cookies = false;
           Downloads = true;
           FormData = true;
-          History = true;
-          Sessions = true;
-          SiteSettings = true;
+          History = false;
+          Sessions = false;
+          SiteSettings = false;
           OfflineApps = true;
           Locked = true;
         };

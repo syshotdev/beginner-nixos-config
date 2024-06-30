@@ -15,18 +15,23 @@
     zoom-us
     obs-studio
     audacity
-
-    # VR
-    alvr
+    pinta # MS paint but linux
+    kdenlive # Video Editor
 
     # Nvidia specific stuff
     (blender.override { cudaSupport = true; })
     nvidia-system-monitor-qt
 
+    # VR
+    alvr
+    immersed-vr
+
     file # Package to distinguish appimages
     appimage-run
 
-    pinta # MS paint but linux
+    # Tools for hard drive recovery
+    ntfs3g
+
 
     # Godot
     dotnet-sdk # To run godot
@@ -49,6 +54,8 @@
     # JVM args: -Dfml.earlyprogresswindow=false
     #prismlauncher-unwrapped # The only launcher that worked (lol)
     prismlauncher
+
+    unstable.cubiomes-viewer # Seed finder for Minecraft
 
     # Maybe required packages for Minecraft?
     glfw

@@ -26,7 +26,12 @@ in {
     discord
     keepassxc # Password manager
     rhythmbox # Music player
-    
+
     gnome.gnome-system-monitor # Task manager for linux
+
+    lm_sensors # See temps of CPU
+
+    yt-dlp # Youtube video downloader
+    ffmpeg # Converts videos into audio formats and also other things
   ];
 }
