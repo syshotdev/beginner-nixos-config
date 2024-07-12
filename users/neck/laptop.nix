@@ -19,7 +19,7 @@
     pinta # MS paint but linux
 
     # Godot
-    # Compile this when you need it (pkgs.callPackage outputs.customPackages.godot4-mono { })
+    (pkgs.callPackage outputs.customPackages.godot4-mono { })
 
     # ---------- MINECRAFT -----------
 

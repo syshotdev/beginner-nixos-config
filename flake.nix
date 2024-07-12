@@ -35,7 +35,7 @@
 
     # I saw a lot of repetitive code, so put it into variables
     # TODO: Change this to what computer you want to compile
-    computer = "desktop"; 
+    computer = "laptop"; 
     specialArgs = {inherit inputs outputs computer nixpkgs;};
   in {
     # Formatter for your nix files, available through 'nix fmt'
