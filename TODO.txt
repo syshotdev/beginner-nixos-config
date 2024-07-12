@@ -12,8 +12,21 @@ Test new and improved configuration by installing on old laptop
 Find out what was lagging Firefox and giving super long loading times
 Add section in README that explains how to correctly add new part to modules directory
 Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
-Get Godot-mono to run (currently c# is limiting it)
 Screenshot with WIN + SHIFT + S
+Every time a git commit is committed, run the "check if personal info or api keys exist" function automatically. If it does find conflicts, respond where and optionally commit.
+Neovim actual syntax highlighting for Java files
+Neovim pressing esc while a snippet/autocomplete is present should exit itself AND exit to normal mode
+Neovim tree with keybinds I can remember
+Neovim do all of the keybinds for things
+Add all of my personal scripts as packages (To this repo). Note: They should be installed in the programming or programs directory, and accessable via path
+I should really create the format guide, complete with the super formatter script
+Understand what the heck SSH is and how to automatically generate keys
+Neovim easy git
+Script to turn mkv files to mp4 automatically on OBS stop recording
+Editing script (open OBS, Audacity, File manager at video clips, Video Editor)
+Cool colorscheme for terminal and Neovim
+Window manager (hyprland or whatever it's called)
+Desktop (KDE plasma or whatever the alternatives are)
 
 
 Things that are too hard for how much time they save configuring:
@@ -22,13 +35,14 @@ Make tabs maximize instead of what they do now when you put them at the top of t
 
 
 # Apps I need to install:
-ALVR
 Visual Studio (Make it optional)
-GCC # Honestly I can just make the dev environment
 Brave
 
 
 Done:
+GCC # Honestly I can just make the dev environment
+ALVR
+Get Godot-mono to run (currently c# is limiting it)
 Minecraft (Modrinth or something close)
 Use outputs.homeModules rather than importing directly (For git and stuff like that manually import) # I didn't even have to manually import it!
 Submit question to Nixos form regarding home-manager and enabling / disabling configurations.

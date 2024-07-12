@@ -13,14 +13,21 @@
 
   home.packages = with pkgs; [ 
     zoom-us
+
     obs-studio
     audacity
     pinta # MS paint but linux
-    kdenlive # Video Editor
 
     # Nvidia specific stuff
     (blender.override { cudaSupport = true; })
     nvidia-system-monitor-qt
+
+    autokey # Macro creator
+
+    kdenlive # Video Editor
+    glaxnimate # Dependency for KDenLive
+
+    handbrake # Turn video formats into other video formats
 
     # VR
     alvr
@@ -32,6 +39,9 @@
     # Tools for hard drive recovery
     ntfs3g
 
+    # Age of Empires
+    wineWowPackages.unstableFull
+    dosbox-staging
 
     # Godot
     dotnet-sdk # To run godot
