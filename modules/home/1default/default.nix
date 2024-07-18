@@ -1,4 +1,3 @@
-{...}:
 {
-  example = import ./example;
+  example = ./example;
 }

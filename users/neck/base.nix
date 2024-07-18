@@ -19,6 +19,7 @@ in {
     (import outputs.homeModules.development.git { inherit user nickname email lib; })
     outputs.homeModules.development.neovim
     outputs.homeModules.other.firefox
+    outputs.homeModules.games.minecraft
   ];
 
   # This is for adding packages that you don't need to configure through .nix files
