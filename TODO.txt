@@ -27,6 +27,7 @@ Editing script (open OBS, Audacity, File manager at video clips, Video Editor)
 Cool colorscheme for terminal and Neovim
 Window manager (hyprland or whatever it's called)
 Desktop (KDE plasma or whatever the alternatives are)
+Workspaces
 
 
 Things that are too hard for how much time they save configuring:

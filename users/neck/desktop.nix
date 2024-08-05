@@ -16,10 +16,14 @@
   home.packages = with pkgs; [ 
     zoom-us
 
+    fsv # File System Visualizer (For figuring out what's taking all my storage)
+
     pinta # MS paint but linux
 
+    losslesscut-bin # Cut videos easier and faster
+
     # Nvidia specific stuff
-    (blender.override { cudaSupport = true; })
+    (unstable.blender.override { cudaSupport = true; })
     nvidia-system-monitor-qt
 
     autokey # Macro creator
