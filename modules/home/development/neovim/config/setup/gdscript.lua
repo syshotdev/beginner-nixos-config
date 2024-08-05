@@ -8,20 +8,33 @@
 --     vim.fn.serverstart './godothost'
 -- end
 
+-- Used for removing the annoying error (EECON REFUSED BLAH BLAH BLAH)
+local function is_port_open(host, port)
+  local command = string.format("nc -z -v -w5 %s %s", host, port)
+  local result = os.execute(command)
+  return result == 0
+end
 
 -- I'm gonna be honest this has never worked
-local port = os.getenv('GDScript_Port') or '6005'
-local cmd = vim.lsp.rpc.connect('127.0.0.1', port)
-local pipe = '/tmp/godot.pipe'
 
-vim.lsp.start({
-  name = 'Godot',
-  cmd = cmd,
-  root_dir = vim.fs.dirname(vim.fs.find({ 'project.godot', '.git' }, { upward = true })[1]),
-  on_attach = function(client, bufnr)
-    vim.api.nvim_command('echo serverstart("' .. pipe .. '")')
-  end
-})
+local port = os.getenv('GDScript_Port') or '6005'
+local host = '127.0.0.1'
+
+if is_port_open(host, port) then
+  local cmd = vim.lsp.rpc.connect(host, port)
+  local pipe = '/tmp/godot.pipe'
+
+  vim.lsp.start({
+    name = 'Godot',
+    cmd = cmd,
+    root_dir = vim.fs.dirname(vim.fs.find({ 'project.godot', '.git' }, { upward = true })[1]),
+    on_attach = function(client, bufnr)
+      vim.api.nvim_command('echo serverstart("' .. pipe .. '")')
+    end
+  })
+else
+  -- print("Info: GDScript LSP couldn't connect to " .. host .. ":" .. port)
+end
 
 --[[
 Extra docs lol:
