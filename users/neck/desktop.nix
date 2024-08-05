@@ -16,7 +16,7 @@
   home.packages = with pkgs; [ 
     zoom-us
 
-    fsv # File System Visualizer (For figuring out what's taking all my storage)
+    #fsv # File System Visualizer (For figuring out what's taking all my storage)
 
     pinta # MS paint but linux
 
