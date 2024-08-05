@@ -3,49 +3,71 @@
 -- Set no wrapping of text and <leader> key
 vim.cmd [[
     set nowrap
-    let mapleader = " "
 ]]
 
+local opt = vim.opt
+local bo = vim.bo
+local g = vim.g
+
+g.mapleader = ' '
+
+---------- Colorscheme stuff ---------- 
+
+opt.background = 'dark'
+g.gruvbox_contrast_dark = 'medium'
+g.gruvbox_invert_selection = '0'
+
+-- Italics are gonna be fun
+--vim.g.gruvbox_material_enable_italic = 1
+--vim.g.gruvbox_material_disable_italic_comment = 0
+--vim.g.gruvbox_material_better_performance = 1
 
 ---------- QOL settings ----------
 
 -- Working directories 
 HOME = os.getenv("HOME")
-vim.opt.backupdir = HOME .. '/.config/nvim/tmp/backup_files/'
-vim.opt.directory = HOME .. '/.config/nvim/tmp/swap_files/'
-vim.opt.undodir = HOME .. '/.config/nvim/tmp/undo_files/'
+opt.backupdir = HOME .. '/.config/nvim/tmp/backup_files/'
+opt.directory = HOME .. '/.config/nvim/tmp/swap_files/'
+opt.undodir = HOME .. '/.config/nvim/tmp/undo_files/'
 
 -- Indentation, how big in spaces and is it spaces and do I indent in functions?
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.bo.softtabstop = 2
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.smartindent = true
+bo.softtabstop = 2
 
 -- No idea
-vim.opt.scrolloff=10
+opt.scrolloff=10
 
 -- Uhhh when you make a tab it opens to the right and bottom
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+opt.splitright = true
+opt.splitbelow = true
 
 -- Line numbers stuff
-vim.opt.number = true
-vim.opt.numberwidth = 1
-vim.opt.relativenumber = true
+opt.number = true
+opt.numberwidth = 1
+opt.relativenumber = true
 
 -- Clipboard for neovim (unnamedplus means system or whatever)
-vim.opt.clipboard = 'unnamedplus'
+opt.clipboard = 'unnamedplus'
+
+-- Use mouse
+opt.mouse = 'a'
+
+-- Makes it easier to type commands?:
+opt.smartcase = true
 
 
 ---------- File tree ----------
 
 -- Vim file tree disable
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 
 -- optionally enable 24-bit colour (For nvim-tree)
-vim.opt.termguicolors = true
+opt.cursorline = true
+opt.termguicolors = true
 
 -- Nvim tree for file explorer
 require("nvim-tree").setup()
@@ -54,7 +76,7 @@ require("nvim-tree").setup()
 ---------- Other things that I didn't implement ----------
 
 -- Don't know what this means
-vim.opt.colorcolumn = '100'
+opt.colorcolumn = '100'
 
 vim.cmd([[
 set completeopt=menu,menuone,noselect

@@ -25,8 +25,8 @@ in{
     plugins = with pkgs.vimPlugins; [
       # Colorscheme
       { 
-        plugin = tokyonight-nvim;
-        config = "vim.cmd[[colorscheme tokyonight-night]]";
+        plugin = gruvbox;
+        config = "vim.cmd[[colorscheme gruvbox]]";
       	type = "lua";
       }
       {
@@ -34,16 +34,12 @@ in{
         config = "
           require('lualine').setup {
             options = {
-              theme = 'tokyonight',
+              theme = 'gruvbox',
             }
           }
         ";
 	      type = "lua";
       }
-
-      # Nvim-tree stuff (file explorer I think)
-      nvim-web-devicons
-
 
       # Syntax highlighting
       {
@@ -54,11 +50,13 @@ in{
         type = "lua";
       }
       nvim-treesitter.withAllGrammars
+      indentLine # Indent line
       vim-nix
       vim-godot # Better syntax-highlighting and indenting for Godot.
 
       # Tree structure on the side with nvim-tree
       nvim-tree-lua
+      nvim-web-devicons
 
 
       # File searching via telescope
@@ -111,10 +109,12 @@ in{
     xsel # Add things to clipboard
 
     rust-analyzer
-    jdt-language-server
+    jdt-language-server # Java
     gdtoolkit
     lua-language-server
+    ccls # C
     csharp-ls
+    nil # Nix
 
     # Packages that are required as dependencies
     gcc
