@@ -17,10 +17,7 @@ opt.background = 'dark'
 g.gruvbox_contrast_dark = 'medium'
 g.gruvbox_invert_selection = '0'
 
--- Italics are gonna be fun
---vim.g.gruvbox_material_enable_italic = 1
---vim.g.gruvbox_material_disable_italic_comment = 0
---vim.g.gruvbox_material_better_performance = 1
+-- No italics because it would take too much work for a joke
 
 ---------- QOL settings ----------
 

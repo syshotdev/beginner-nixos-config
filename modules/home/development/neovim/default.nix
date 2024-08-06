@@ -40,6 +40,19 @@ in{
         ";
 	      type = "lua";
       }
+      # Tabs, like in firefox
+      {
+        plugin = bufferline-nvim;
+        config = builtins.readFile config/setup/telescope.lua;
+        type = "lua";
+      }
+      # Toggle terminal
+      {
+        plugin = toggleterm-nvim;
+        config = builtins.readFile config/setup/toggleterm.lua;
+        type = "lua";
+      }
+
 
       # Syntax highlighting
       {
@@ -51,8 +64,9 @@ in{
       }
       nvim-treesitter.withAllGrammars
       indentLine # Indent line
+      # Better syntax-highlighting and indenting
       vim-nix
-      vim-godot # Better syntax-highlighting and indenting for Godot.
+      vim-godot
 
       # Tree structure on the side with nvim-tree
       nvim-tree-lua

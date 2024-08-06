@@ -44,4 +44,4 @@ Once this is set up, Godot's External Editor settings need to be updated to use 
 Use External Editor: On
 Exec Path: nvim
 Exec Flags: --server /tmp/godot.pipe --remote-send "<esc>:n {file}<CR>:call cursor({line},{col})<CR>"
-]] --
+]]--
