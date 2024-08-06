@@ -1,9 +1,8 @@
 Add all the apps to taskbar
 PDFS should be opened with Firefox
-SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal
+SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal 
 Hash passwords for my account
 Wallpaper should be cool
-Nvim with all of my plugins and configurations that make sense
 Languages: English, Chinese, and Russian.
 Create directories in home directory for all different apps and things (Like: Programming, Programs, ProgramData, SecretAndKeys, etc...)
 In this repo, add a secrets directory, and this will have extra users and keys, paths to private files, and like hashed passwords or whatever.
@@ -14,20 +13,16 @@ Add section in README that explains how to correctly add new part to modules dir
 Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
 Screenshot with WIN + SHIFT + S
 Every time a git commit is committed, run the "check if personal info or api keys exist" function automatically. If it does find conflicts, respond where and optionally commit.
-Neovim actual syntax highlighting for Java files
-Neovim pressing esc while a snippet/autocomplete is present should exit itself AND exit to normal mode
-Neovim tree with keybinds I can remember
-Neovim do all of the keybinds for things
 Add all of my personal scripts as packages (To this repo). Note: They should be installed in the programming or programs directory, and accessable via path
 I should really create the format guide, complete with the super formatter script
 Understand what the heck SSH is and how to automatically generate keys
 Neovim easy git
 Script to turn mkv files to mp4 automatically on OBS stop recording
 Editing script (open OBS, Audacity, File manager at video clips, Video Editor)
-Cool colorscheme for terminal and Neovim
 Window manager (hyprland or whatever it's called)
 Desktop (KDE plasma or whatever the alternatives are)
 Workspaces
+The thing for pausing/skipping/previousing my music w/mouse buttons
 
 
 Things that are too hard for how much time they save configuring:
@@ -41,6 +36,12 @@ Brave
 
 
 Done:
+Cool colorscheme for terminal and Neovim
+Neovim actual syntax highlighting for Java files
+Nvim with all of my plugins and configurations that make sense
+Neovim pressing esc while a snippet/autocomplete is present should exit itself AND exit to normal mode
+Neovim tree with keybinds I can remember
+Neovim do all of the keybinds for things
 GCC # Honestly I can just make the dev environment
 ALVR
 Get Godot-mono to run (currently c# is limiting it)
