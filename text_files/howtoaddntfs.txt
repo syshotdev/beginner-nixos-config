@@ -1,0 +1,3 @@
+sudo ntfsfix /dev/sd?
+sudo ntfs-3g /dev/sd? /run/media/neck/? -o force
+(If doesn't work mkdir)
