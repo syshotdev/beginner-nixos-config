@@ -53,7 +53,7 @@
     overlays = import ./modules/overlays {inherit inputs; };
 
     # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#computername'
+    # Available through 'sudo nixos-rebuild switch --flake .#computername'
     nixosConfigurations = {
       "${computer}" = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;

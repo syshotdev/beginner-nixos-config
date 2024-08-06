@@ -128,13 +128,11 @@
 
 
   # Fonts because Chinese / Unicode characters don't show up correctly
-  # fira-code because I'm a coder
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-extra
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    fira-code
   ];
 
   nixpkgs.config.allowUnfree = true; # Allow proprietary packages
