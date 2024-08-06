@@ -11,7 +11,6 @@
   computer,
   ...
 }: {
-  
   # Bootloader stuff, like grub and if the system can boot
   boot.loader = {
     timeout = 120; # Seconds till grub chooses option to boot
@@ -71,6 +70,28 @@
     xkb.variant = ""; # No idea what this means
   };
 
+  environment.etc."dconf/db/local.d/00_custom-keybindings" = {
+    text = ''
+      [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
+      name='Take Screenshot'
+      command='gnome-screenshot -a'
+      binding=['<Super><Shift>s']
+    '';
+  };
+
+  environment.etc."dconf/db/local.d/locks/keybindings" = {
+    text = ''
+      # Prevent overriding custom keybindings
+    '';
+  };
+
+  systemd.services.dconf-update = {
+    description = "Update dconf database";
+    after = [ "multi-user.target" ];
+    serviceConfig.ExecStart = "${pkgs.dconf}/bin/dconf update";
+    wantedBy = [ "multi-user.target" ];
+  };
+
   # Sound stuff
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -82,7 +103,7 @@
     pulse.enable = true;
   };
 
-  # This is for specifically (my) brother printer, may work with other companieieses printers
+  # This is for specifically (my) brother printer, may work with other companieisdxjcgbdsklhes printers
   services.printing = {
     enable = true;
 
@@ -103,14 +124,17 @@
       userServices = true;
     };
   };
+  
 
 
   # Fonts because Chinese / Unicode characters don't show up correctly
+  # fira-code because I'm a coder
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-extra
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
+    fira-code
   ];
 
   nixpkgs.config.allowUnfree = true; # Allow proprietary packages

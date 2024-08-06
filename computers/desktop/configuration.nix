@@ -16,6 +16,7 @@
     outputs.systemModules.optimizations.intelCPU
     outputs.systemModules.optimizations.nvidia
     outputs.systemModules.steam
+    outputs.systemModules.kitty
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix

@@ -4,4 +4,5 @@
   # List your module files here
   optimizations = import ./optimizations;
   steam = ./steam;
+  kitty = ./kitty;
 }
