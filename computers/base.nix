@@ -146,6 +146,7 @@
     rhythmbox
     wget
     ripgrep
+    openssl
   ];
 
   system.stateVersion = "24.05"; # Version of system
