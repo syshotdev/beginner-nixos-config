@@ -18,11 +18,32 @@ I should really create the format guide, complete with the super formatter scrip
 Understand what the heck SSH is and how to automatically generate keys
 Neovim easy git
 Script to turn mkv files to mp4 automatically on OBS stop recording
-Editing script (open OBS, Audacity, File manager at video clips, Video Editor)
+Open up editing suite script (open OBS, Audacity, File manager at video clips, Video Editor)
 Window manager (hyprland or whatever it's called)
 Desktop (KDE plasma or whatever the alternatives are)
 Workspaces
 The thing for pausing/skipping/previousing my music w/mouse buttons
+Find out why Minecraft 1.8.9 crashes my graphics drivers everytime I close the application
+Neovim terminal find out how to get out of it when you've typed into it
+Neovim goto definition working in C with header files
+Neovim actual descriptions for keybinds
+Neovim autocorrect (And way to disable it very quickly)
+Kitty how do I switch tabs via keyboard (Make it easy to remember)
+Kitty why does it open as my default file manager
+Keybind to go to this nixos config directory and programming directory
+Should I use TXT files for TODO files? In TXT's favor .txt is clearly a text file, so you can't mistake it for anything else
+Should I wrap around text in this TODO file?
+Neovim how do I save a file with a name without going into nvim-filetree?
+Compile this nixos configuration into an iso
+Donate to the nixos fund so they don't go bankrupt
+Neovim visual indicators for buffers
+Neovim whenever I close terminal keep buffers the way they are
+Neovim whenever I open terminal keep buffers the way they are
+Minecraft profiles are downloaded and installed automatically
+GUI for this TODO file? It's getting a bit bulky and hard to navigate (And is ugly)
+Why does google docs flicker with Firefox (But only sometimes?)
+Make standard for how to write this text file
+Why is it that when I run an application, it gives an "incompatible qt library blah blah" but with sudo it works?
 
 
 Things that are too hard for how much time they save configuring:
