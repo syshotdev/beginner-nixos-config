@@ -71,7 +71,7 @@ in {
           "browser.theme.content-theme" = "dark";
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
           "browser.contentblocking.category" = {
-            Value = "strict";
+            Value = "standard";
             Status = "locked";
           };
           "extensions.pocket.enabled" = lock-false;
