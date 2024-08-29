@@ -3,10 +3,7 @@
   pkgs,
   ...
 }:
-let 
-  # Shorthand for adding plugins (Not finished)
-  #addPlugin = plugin: config: {plugin = pkgs.vimPlugins.plugin; config = config};
-in{
+{
   programs.neovim = {
     enable = true;
 
@@ -80,8 +77,9 @@ in{
 	      type = "lua";
       }
       telescope-fzf-native-nvim # To fix fuzzy finding to be better
+      # Tool to replace a word in all files
+      nvim-spectre
       
-
       # What buttons do I press to do a command again?
       {
         plugin = which-key-nvim;
@@ -124,7 +122,7 @@ in{
 
     rust-analyzer
     jdt-language-server # Java
-    gdtoolkit
+    gdtoolkit # GDscript
     lua-language-server
     ccls # C
     csharp-ls
