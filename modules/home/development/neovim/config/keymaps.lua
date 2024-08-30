@@ -7,7 +7,7 @@ map('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", 
 map('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", { desc = "Find Buffers", noremap = true })
 
 -- Toggle Spectre for mass finding and renaming of words
-map('n', '<leader>fr', "<cmd>lua require('spectre').toggle()<cr>", { desc = "Toggle Spectre", noremap = true })
+map('n', '<leader>fr', "<cmd>lua require('spectre').toggle()<cr>", { desc = "Find And Replace (With Spectre)", noremap = true })
 
 -- FileTree(Toggle)
 map('n', '<leader>ft', '<cmd>NvimTreeToggle<cr>', { desc = "Toggle File Tree", noremap = true })
@@ -61,8 +61,9 @@ map('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action", noremap 
 map('n', '<leader>cr', vim.lsp.buf.rename, { desc = "Code Rename", noremap = true })
 map('n', '<leader>cf', function()
   vim.lsp.buf.format { async = true }
-end, { desc = "Toggle Spectre", noremap = true })
-map('v', '<leader>cs', '<cmd>sort<cr>', { desc = "Code Sort", noremap = true })
+end, { desc = "Code Format", noremap = true })
+-- This "Code Sort" doesn't work for whatever reason, use :sort
+--map('v', '<leader>cs', "<cmd>'<,'>sort<cr>", { desc = "Code Sort", noremap = true })
 
 local function close_all_tabs_and_save()
   local tabpages = vim.api.nvim_list_tabpages()

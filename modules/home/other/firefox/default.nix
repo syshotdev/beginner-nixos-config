@@ -25,7 +25,7 @@ in {
         OfferToSaveLoginsDefault = false;
         PasswordManagerEnabled = false;
         SanitizeOnShutdown = {
-          Cache = true;
+          Cache = false;
           Cookies = false;
           Downloads = true;
           FormData = true;
