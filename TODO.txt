@@ -1,49 +1,55 @@
-Add all the apps to taskbar
-PDFS should be opened with Firefox
-SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal 
-Hash passwords for my account
-Wallpaper should be cool
-Languages: English, Chinese, and Russian.
-Create directories in home directory for all different apps and things (Like: Programming, Programs, ProgramData, SecretAndKeys, etc...)
-In this repo, add a secrets directory, and this will have extra users and keys, paths to private files, and like hashed passwords or whatever.
 Add AMD support
-Test new and improved configuration by installing on old laptop
-Find out what was lagging Firefox and giving super long loading times
-Add section in README that explains how to correctly add new part to modules directory
 Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
-Screenshot with WIN + SHIFT + S
-Every time a git commit is committed, run the "check if personal info or api keys exist" function automatically. If it does find conflicts, respond where and optionally commit.
 Add all of my personal scripts as packages (To this repo). Note: They should be installed in the programming or programs directory, and accessable via path
-I should really create the format guide, complete with the super formatter script
-Understand what the heck SSH is and how to automatically generate keys
-Neovim easy git
-Script to turn mkv files to mp4 automatically on OBS stop recording
-Open up editing suite script (open OBS, Audacity, File manager at video clips, Video Editor)
-Window manager (hyprland or whatever it's called)
+Add all the apps to taskbar
+Add section in README that explains how to correctly add new part to modules directory
+Compile this nixos configuration into an iso
+Create directories in home directory for all different apps and things (Like: Programming, Programs, ProgramData, SecretAndKeys, etc...)
 Desktop (KDE plasma or whatever the alternatives are)
-Workspaces
-The thing for pausing/skipping/previousing my music w/mouse buttons
+Donate to the nixos fund so they don't go bankrupt
+Every time a git commit is committed, run the "check if personal info or api keys exist" function automatically. If it does find conflicts, respond where and optionally commit.
+Find out what was lagging Firefox and giving super long loading times
 Find out why Minecraft 1.8.9 crashes my graphics drivers everytime I close the application
-Neovim terminal find out how to get out of it when you've typed into it
-Neovim goto definition working in C with header files
-Neovim actual descriptions for keybinds
-Neovim autocorrect (And way to disable it very quickly)
+GUI for this TODO file? It's getting a bit bulky and hard to navigate (And is ugly)
+Hash passwords for my account
+I should really create the format guide, complete with the super formatter script
+In this repo, add a secrets directory, and this will have extra users and keys, paths to private files, and like hashed passwords or whatever.
+Keybind to go to this nixos config directory and programming directory
 Kitty how do I switch tabs via keyboard (Make it easy to remember)
 Kitty why does it open as my default file manager
-Keybind to go to this nixos config directory and programming directory
-Should I use TXT files for TODO files? In TXT's favor .txt is clearly a text file, so you can't mistake it for anything else
-Should I wrap around text in this TODO file?
+Languages: English, Chinese, and Russian.
+Make standard for how to write this text file
+Minecraft fix error "GLFW error during init: [0x1000E]Failed to detect any supported platform"
+Minecraft launcher actually launches
+Minecraft profiles are downloaded and installed automatically
+Modrinth actually launches
+Neovim actual descriptions for keybinds
+Neovim autocorrect (And way to disable it very quickly)
+Neovim easy git
+Neovim goto definition working in C with header files
 Neovim how do I save a file with a name without going into nvim-filetree?
-Compile this nixos configuration into an iso
-Donate to the nixos fund so they don't go bankrupt
+Neovim terminal find out how to get out of it when you've typed into it
+Neovim terminal is easier to close with better shortcut
 Neovim visual indicators for buffers
 Neovim whenever I close terminal keep buffers the way they are
 Neovim whenever I open terminal keep buffers the way they are
-Minecraft profiles are downloaded and installed automatically
-GUI for this TODO file? It's getting a bit bulky and hard to navigate (And is ugly)
+Script to open up editing suite (open OBS, Audacity, File manager at video clips, Video Editor)
+Firefox PDFS should be opened with
+Keybind to screenshot with WIN + SHIFT + S
+Script in path for sudo nixos-rebuild switch --flake .#COMPUTER_NAME
+Script to turn mkv files to mp4 automatically on OBS stop recording
+Should I use TXT files for TODO files? In TXT's favor .txt is clearly a text file, so you can't mistake it for anything else
+Should I wrap around text in this TODO file?
+SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal 
+Test new and improved configuration by installing on old laptop
+Keybind thing for pausing/skipping/previousing my music w/mouse buttons
+Understand what the heck SSH is and how to automatically generate keys
+Wallpaper should be cool
 Why does google docs flicker with Firefox (But only sometimes?)
-Make standard for how to write this text file
 Why is it that when I run an application, it gives an "incompatible qt library blah blah" but with sudo it works?
+Window manager (hyprland or whatever it's called)
+Workspaces
+
 
 
 Things that are too hard for how much time they save configuring:
