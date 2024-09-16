@@ -1,0 +1,3 @@
+{ pkgs, ... }:{
+  check-names = ./CheckNames;
+}
