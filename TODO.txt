@@ -51,6 +51,7 @@ Window manager (hyprland or whatever it's called)
 Workspaces
 Scripts: Where do I put them? In home or dedicated scripts dir or somewhere else?
 Scripts: Do I import all of them for a computer or do I pick and choose?
+Scripts: CheckNames: Offending word/words first, then path, then line
 Broken desktop: Can't open apps, restart cinnamon, steam popups become clear windows. Why?
 
 
