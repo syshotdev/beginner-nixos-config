@@ -9,8 +9,8 @@ map('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", { 
 -- Toggle Spectre for mass finding and renaming of words
 map('n', '<leader>fr', "<cmd>lua require('spectre').toggle()<cr>", { desc = "Find And Replace (With Spectre)", noremap = true })
 
--- FileTree(Toggle)
-map('n', '<leader>ft', '<cmd>NvimTreeToggle<cr>', { desc = "Toggle File Tree", noremap = true })
+-- File(TreeToggle)
+map('n', '<leader>tt', '<cmd>NvimTreeToggle<cr>', { desc = "Toggle File Tree", noremap = true })
 
 -- <C-\> for terminal
 
