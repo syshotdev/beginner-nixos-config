@@ -49,6 +49,9 @@ Why does google docs flicker with Firefox (But only sometimes?)
 Why is it that when I run an application, it gives an "incompatible qt library blah blah" but with sudo it works?
 Window manager (hyprland or whatever it's called)
 Workspaces
+Scripts: Where do I put them? In home or dedicated scripts dir or somewhere else?
+Scripts: Do I import all of them for a computer or do I pick and choose?
+Broken desktop: Can't open apps, restart cinnamon, steam popups become clear windows. Why?
 
 
 
