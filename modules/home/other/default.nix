@@ -1,3 +1,3 @@
 {
-  firefox = import ./firefox;
+  firefox = ./firefox;
 }

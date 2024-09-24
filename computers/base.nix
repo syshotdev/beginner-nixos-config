@@ -31,7 +31,7 @@
 
   # Disable IPv6
   networking.enableIPv6 = false;
-  boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparantly this helps
+  boot.kernelParams = ["ipv6.disable=1"]; # Firefox takes a long time to load and apparently this helps
 
 
   time.timeZone = "America/Los_Angeles";
@@ -103,7 +103,7 @@
     pulse.enable = true;
   };
 
-  # This is for specifically (my) brother printer, may work with other companieisdxjcgbdsklhes printers
+  # This is for specifically (my) brother printer, may work with other companies's printers
   services.printing = {
     enable = true;
 
@@ -125,8 +125,6 @@
     };
   };
   
-
-
   # Fonts because Chinese / Unicode characters don't show up correctly
   fonts.packages = with pkgs; [
     noto-fonts

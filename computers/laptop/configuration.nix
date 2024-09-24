@@ -13,7 +13,7 @@
   imports = [
     outputs.systemModules.optimizations.cpu
     outputs.systemModules.optimizations.gpu
-    outputs.systemModules.optimizations.intelCPU
+    outputs.systemModules.optimizations.intel-cpu
     # outputs.systemModules.steam # Compile when needed
 
     # Import your generated (nixos-generate-config) hardware configuration

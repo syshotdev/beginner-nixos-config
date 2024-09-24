@@ -13,17 +13,21 @@
   imports = [
     outputs.systemModules.optimizations.cpu
     outputs.systemModules.optimizations.gpu
-    outputs.systemModules.optimizations.intelCPU
+    outputs.systemModules.optimizations.intel-cpu
     outputs.systemModules.optimizations.nvidia
     outputs.systemModules.steam
     outputs.systemModules.kitty
+    outputs.scriptModules.check-names
+    #(import outputs.scriptModules.check-names { inherit pkgs;} )
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../base.nix # Base system settings
   ];
 
-  #environment.systemPackages = with pkgs; [ appimagekit ];
+  #environment.systemPackages = with pkgs; [
+  #  (import outputs.scriptModules.check-names { inherit pkgs;} )
+  #];
 
   # Users are defined in the (root)/users/ dir.
   # Defining users separately allows user-specific packages and personalized config like git username.
