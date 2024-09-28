@@ -1,0 +1,4 @@
+{
+  monado = ./monado;
+  simula = ./simula;
+}

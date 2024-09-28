@@ -3,6 +3,7 @@
 {
   # List your module files here
   optimizations = import ./optimizations;
+  vr = import ./vr;
   steam = ./steam;
   kitty = ./kitty;
 }
