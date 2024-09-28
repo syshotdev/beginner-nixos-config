@@ -17,7 +17,10 @@
     outputs.systemModules.optimizations.nvidia
     outputs.systemModules.steam
     outputs.systemModules.kitty
+    outputs.systemModules.vr.monado
+
     outputs.scriptModules.check-names
+    outputs.scriptModules.vr-run
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
