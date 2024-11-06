@@ -33,8 +33,9 @@
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    # I saw a lot of repetitive code, so put it into variables
-    # TODO: Change this to what computer you want to compile
+    ##########################################################
+    # TODO: Change this to what computer you want to compile #
+    ##########################################################
     computer = "laptop"; 
     specialArgs = {inherit inputs outputs computer nixpkgs;};
   in {

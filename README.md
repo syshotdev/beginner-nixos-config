@@ -2,7 +2,7 @@
 
 NixOS is an operating system based on the package manager 'nix'.
 This repo will get you working a working configuration quickly and will teach you 
-about nix (the language) and how to configure stuff without the thousands of pitfalls I had to endure.
+about nix (the language) and how to configure your system without the thousands of pitfalls.
 
 Some links that may be of use:
 
@@ -12,7 +12,6 @@ Some links that may be of use:
 - https://github.com/MattCairns/nixos-config (I stole stuff from his repo)
 
 ## Features
-
 - Mostly documented
 - Flakes (I still don't know what this means)
 - Optional unstable packages (for more up-to-date packages)
@@ -23,28 +22,28 @@ Some links that may be of use:
   - From github
 - Neatly organized modules
   - System stuff (drivers, system theme, system-wide programs, etc.)
-  - User stuff (git, neovim, user-specific options) 
+  - User stuff (git, neovim, user-specific options, video editing, etc.) 
   - Overlays (Only used for unstable-packages)
   - Custom-packages (Examples of grabbing from online and building)
 - A sensible file structure
 - Simple (as much as feasible)
 - A quickstart
 
-
 # Specific modules
-- A configured Neovim
-- Automatically setting up git
+- Neovim
+- Git
+- Firefox
+- Video editing
+- Video recording
+- Godot
+- Minecraft
+-
 - Steam
 - GPU drivers
   - You manually import these
 - CPU optimizations 
   - (Just so you know most Linux distros have these automatically, not NixOS)
 - Other things
-
-# (Import these from users/neck configs)
-- Minecraft (kinda)
-- Godot-mono 4.2
-- Many programs from https://search.nixos.org
 
 I have a TODO.txt in this repo if you're curious.
 
@@ -83,26 +82,31 @@ It's best to understand this structure (To know where to put things) but you can
 
 - `flake.nix` is the entrypoint to this configuration, defines nixpkgs source + global variables
 - `modules`, directory with all configured programs
-  - `home` is user-specific packages
-  - `system` is for the entire system
-  - `custom-modules` is things that you can't find at https://search.nixos.org
-  - `overlays` is currently just for unstable packages (actual use is `overlaying` patches onto whatever)
+  - `home` is for user-specific packages and configuration
+  - `system` is for modules like GPU drivers or apps that require admin
+  - `custom-packages` is for things that you can't find at https://search.nixos.org/packages
+  - `overlays` is currently just for unstable packages (actual use is `overlaying` patches onto software)
 
 - `computers` houses all of the computer-specific configurations
   - `base.nix` is the base settings for all computers (like boot preferences, timezone, etc)
   - `default` is a computer named `default`.
-    - `configuration.nix` is machine-specific configuration, imports users and sets up the machine
-  - `nixos` next 3 lines is same as last 2
-    - `configuration.nix`
+    - `configuration.nix` is the machine-specific configuration, it imports users and sets up the machine
+  - `desktop` is a computer named `desktop`
+    - `configuration.nix` is `desktop`'s machine-specific configuration, it imports users and sets up the machine
     - `hardware-configuration.nix (Specifically my hardware, in tutorial you'll get your own)`
+  - `laptop` is a computer named `laptop`
+    - `configuration.nix` is `laptop`'s machine-specific configuration, it imports users and sets up the machine
+    - `hardware-configuration.nix`
 
 - `users` all of the users for the specific computers
+  - `home-manager-boilerplate.nix` is code to just get home-manager working
   - `default` is configuration dir for the user `default`
-    - `base.nix` all computers share this configuration file
+    - `base.nix` every computer with the `default` user shares this `base` configuration
     - `default.nix` a user configuration specifically for a computer named `default`
   - `neck` is configuration dir for user `neck`
-    - `base.nix` blah blah blah
-    - `desktop.nix`
+    - `base.nix` every computer with the `neck` user shares this `base` configuration
+    - `desktop.nix` user configuration for my nvidia desktop PC
+    - `laptop.nix` user configuration for my laptop
 
 Each main folder will (in the future) have a README with more information about it's purpose.
 
@@ -197,7 +201,7 @@ your new files/changes
 ## Changing packages per-user
 
 Go into the users/USERNAME/COMPUTER_NAME and you'll find `imports`.
-Or for packages that you don't need to configure: `home.packages` and [add any package you want.](https://search.nixos.org)
+Or for packages that you don't need to configure: `home.packages` and [add any package you want.](https://search.nixos.org/packages)
 
 ## Adding modules in an organized way
 
@@ -205,4 +209,4 @@ TODO: add an actual instructions here
 
 
 
-## Total hours spent: like 80 hr
+## Total hours spent: like 100 hours
