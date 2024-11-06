@@ -35,9 +35,6 @@
     file # Package to distinguish appimages
     appimage-run
 
-    # Tools for hard drive recovery
-    ntfs3g
-
     # Age of Empires
     wineWowPackages.unstableFull
     dosbox-staging

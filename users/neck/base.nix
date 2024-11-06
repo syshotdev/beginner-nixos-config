@@ -25,8 +25,11 @@ in {
   # This is for adding packages that you don't need to configure through .nix files
   home.packages = with pkgs; [ 
     discord
-    keepassxc # Password manager
     rhythmbox # Music player
+    keepassxc
+    
+    # Tools for hard drive recovery
+    ntfs3g
 
     gnome.gnome-system-monitor # Task manager for linux
 

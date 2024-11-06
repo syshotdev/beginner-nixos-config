@@ -20,18 +20,5 @@
 
     # Godot
     (pkgs.callPackage outputs.customPackages.godot4-mono { })
-
-    # ---------- MINECRAFT -----------
-
-    # Java for minecraft
-    jdk17
-
-    # JVM args: -Dfml.earlyprogresswindow=false
-    prismlauncher
-
-    # Maybe required packages for Minecraft?
-    glfw
-    glxinfo # LibGL info
-    pciutils # lspci
   ];
 }
