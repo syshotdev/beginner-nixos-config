@@ -13,7 +13,8 @@
     outputs.systemModules.optimizations.cpu
     outputs.systemModules.optimizations.gpu
     outputs.systemModules.optimizations.intel-cpu
-    # outputs.systemModules.steam # Compile when needed
+    
+    outputs.scriptModules.check-names
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix

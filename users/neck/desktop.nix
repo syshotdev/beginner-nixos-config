@@ -14,13 +14,11 @@
   ];
 
   home.packages = with pkgs; [ 
-    zoom-us
+    mbbz-hf
 
     fsv # File System Visualizer (For figuring out what's taking all my storage)
 
     pinta # MS paint but linux
-
-    losslesscut-bin # Cut videos easier and faster
 
     # Nvidia specific stuff
     (unstable.blender.override { cudaSupport = true; })
