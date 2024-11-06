@@ -6,11 +6,10 @@
   lib,
   config,
   pkgs,
-  computer,
   ...
 }: {
   imports = [
-    # Import my pre-configured system modules
+    # Import pre-configured system modules
     outputs.systemModules.optimizations.cpu # General optimizations
     outputs.systemModules.optimizations.gpu
     # outputs.systemModules.steam
@@ -31,8 +30,10 @@
     };
   };
 
-  # Create the users from (root)/users/{name}/{computer-specific config}.nix (Works on every nixos rebuild)
-  home-manager.users.default = import ../../users/default/${computer}.nix;
+  # Create the users. (root)/users/{user}/{computer}.nix (Works on every nixos rebuild)
+  home-manager.users.default = import ../../users/default/default.nix;
+
+  nixpkgs.overlays = [outputs.overlays.unstable-packages]; # Newer packages
 
   # I don't know what this code does. Let's call it "magic" and not touch it for now
   nix = let

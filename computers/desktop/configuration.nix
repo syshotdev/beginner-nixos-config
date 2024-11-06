@@ -6,7 +6,6 @@
   lib,
   config,
   pkgs,
-  computer,
   ...
 }: 
 {
@@ -39,8 +38,8 @@
     };
   };
 
-  # Create the users from (root)/users/{name}/{computer-specific config}.nix (Works on every nixos rebuild)
-  home-manager.users.neck = import ../../users/neck/${computer}.nix;
+  # Create the users. (root)/users/{user}/{computer}.nix (Works on every nixos rebuild)
+  home-manager.users.neck = import ../../users/neck/desktop.nix;
   
   # Extra commands to get minecraft running (I'd put this into user, but Idk how to)
   # Also doesn't work: "GLX error blah blah update your drivers" (Fixed by garbage collecting Java and reinstalling it)

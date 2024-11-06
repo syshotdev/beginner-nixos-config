@@ -114,6 +114,13 @@
       }
       cmp-nvim-lsp
       luasnip
+
+      # Debugger
+      {
+        plugin = nvim-dap;
+        config = builtins.readFile config/setup/dap.lua;
+	      type = "lua";
+      }
     ];
   };
 

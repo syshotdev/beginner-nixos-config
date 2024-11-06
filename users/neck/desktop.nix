@@ -35,6 +35,9 @@
     file # Package to distinguish appimages
     appimage-run
 
+    # Tools for hard drive recovery
+    ntfs3g
+
     # Age of Empires
     wineWowPackages.unstableFull
     dosbox-staging
@@ -42,5 +45,7 @@
     # Godot
     dotnet-sdk # To run godot
     (pkgs.callPackage outputs.customPackages.godot4-mono { })
+
+    gdb # temporary C debugger
   ];
 }

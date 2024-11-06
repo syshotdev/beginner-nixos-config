@@ -37,6 +37,8 @@ Neovim terminal is easier to close with better shortcut
 Neovim visual indicators for buffers
 Neovim whenever I close terminal keep buffers the way they are
 Neovim whenever I open terminal keep buffers the way they are
+Firefox PDFS should be opened with
+Keybind to screenshot with WIN + SHIFT + S
 Open up editing suite script (open OBS, Audacity, File manager at video clips, Video Editor)
 PDFS should be opened with Firefox
 Screenshot with WIN + SHIFT + S
@@ -50,13 +52,18 @@ Should I use the TXT extension for TODO files? In TXT's favor .txt is clearly a 
 Should I wrap around text in this TODO file?
 SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal 
 Test new and improved configuration by installing on old laptop
-The thing for pausing/skipping/previousing my music w/mouse buttons
+Keybind thing for pausing/skipping/previousing my music w/mouse buttons
 Understand what the heck SSH is and how to automatically generate keys
 Wallpaper should be cool
 Why does google docs flicker with Firefox (But only sometimes?)
 Why is it that when I run an application, it gives an "incompatible qt library blah blah" but with sudo it works?
 Window manager (hyprland or whatever it's called)
 Workspaces
+Scripts: Where do I put them? In home or dedicated scripts dir or somewhere else?
+Scripts: Do I import all of them for a computer or do I pick and choose?
+Scripts: CheckNames: Offending word/words first, then path, then line
+Broken desktop: Can't open apps, restart cinnamon, steam popups become clear windows. Why?
+
 
 
 Things that are too hard for how much time they save configuring:

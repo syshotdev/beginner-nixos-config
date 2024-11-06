@@ -4,8 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
+    # Cutting edge unstable releases
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
@@ -33,11 +32,10 @@
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
 
-    ##########################################################
-    # TODO: Change this to what computer you want to compile #
-    ##########################################################
-    computer = "laptop"; 
-    specialArgs = {inherit inputs outputs computer nixpkgs;};
+    # Will make `computer` equal to the --flake .#{COMPUTER_NAME} eventually
+    computer = "desktop";
+    # I saw a lot of repetitive code, so put it into variable
+    specialArgs = {inherit inputs outputs nixpkgs computer;};
   in {
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
@@ -57,19 +55,36 @@
     # NixOS configuration entrypoint
     # Available through 'sudo nixos-rebuild switch --flake .#computername'
     nixosConfigurations = {
-      "${computer}" = nixpkgs.lib.nixosSystem {
+      default = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         modules = [
           home-manager.nixosModules.home-manager{
             home-manager.extraSpecialArgs = specialArgs;
           }
           
-          ./computers/${computer}/configuration.nix
+          ./computers/default/configuration.nix
+        ];
+      };
+      desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        modules = [
+          home-manager.nixosModules.home-manager{
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+          
+          ./computers/desktop/configuration.nix
+        ];
+      };
+      laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        modules = [
+          home-manager.nixosModules.home-manager{
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+          
+          ./computers/laptop/configuration.nix
         ];
       };
     };
-
-    # No more home-manager configurations :)
-    # Now computers import users, and users are rebuilt on nixos-rebuild
   };
 }

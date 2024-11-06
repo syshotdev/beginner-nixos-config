@@ -3,11 +3,7 @@
 # Credits: my original config (made by the nixos installer), github user MattCairns with his
 # nixos config, vimjoyer's videos, and a couple other people who are on GitHub. Thank you guys
 {
-  config,
   pkgs,
-  user,
-  lib,
-  inputs,
   computer,
   ...
 }: {
