@@ -1,3 +1,4 @@
+Delete everything
 Add AMD support
 Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
 Add all of my personal scripts as packages (To this repo). Note: They should be installed in the programming or programs directory, and accessable via path
