@@ -3,8 +3,12 @@
 # Credits: my original config (made by the nixos installer), github user MattCairns with his
 # nixos config, vimjoyer's videos, and a couple other people who are on GitHub. Thank you guys
 {
-  pkgs,
+  inputs,
+  outputs,
   computer,
+  config,
+  lib,
+  pkgs,
   ...
 }: {
   # Bootloader stuff, like grub and if the system can boot
@@ -45,9 +49,24 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # I don't know what this code does. Let's call it "magic" and not touch it for now
   # Extra nix options, like enabling flakes.
-  nix = {
-    settings.experimental-features = ["nix-command" "flakes"];
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  in {
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      # Opinionated: disable global registry
+      flake-registry = "";
+      # Workaround for https://github.com/NixOS/nix/issues/9574
+      nix-path = config.nix.nixPath;
+    };
+    # Opinionated: disable channels
+    channel.enable = false;
+
+    # Opinionated: make flake registry and nix path match flake inputs
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
   # Enable X11 and Cinnamon (For showing the desktop)
@@ -66,6 +85,7 @@
     xkb.variant = ""; # No idea what this means
   };
 
+  # Custom keybinds
   environment.etc."dconf/db/local.d/00_custom-keybindings" = {
     text = ''
       [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
@@ -131,9 +151,9 @@
 
   nixpkgs.config.allowUnfree = true; # Allow proprietary packages
 
-  # Packages that should be enabled with every account.
-  # (Might change this to be in the "Modules" area, 
-  # for extra customizability)
+  nixpkgs.overlays = [outputs.overlays.unstable-packages]; # Adds unstable packages
+
+  # Packages that should be enabled with every computer
   environment.systemPackages = with pkgs; [
     git
     firefox

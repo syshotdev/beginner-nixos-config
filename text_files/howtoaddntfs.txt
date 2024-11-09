@@ -1,3 +1,0 @@
-sudo ntfsfix /dev/sd?
-sudo mkdir /run/media/neck/?
-sudo ntfs-3g /dev/sd? /run/media/neck/? -o force

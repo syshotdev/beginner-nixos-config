@@ -1,17 +1,15 @@
-# Base file that all of the different variations of this user (for different computers) share
+# Base configuration of the user "work". Every machine that has this user inherits this file
 {
-  inputs,
   outputs,
   lib,
-  config,
   pkgs,
   ...
 }: 
 let
   # User specific variables. TODO: Change these
-  user = "john"; # Computer user's name
-  nickname = "Ilovecats0013"; # What they call you online (can be the same as computer username)
-  email = "default@default.com";
+  user = "work"; # Computer user account's name
+  nickname = "john"; # What they call you online (can be the same as computer username)
+  email = "john.johnakin@companyname.com";
 in {
   imports = [
     # Disable these imports by either commenting them out or deleting them
@@ -26,6 +24,8 @@ in {
 
   # This is for adding packages that you don't need to configure through .nix files
   home.packages = with pkgs; [ 
-    #discord
+    # krita
+    # rhythmbox
+    # thunderbird
   ];
 }

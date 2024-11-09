@@ -1,7 +1,5 @@
+# Configuration of the user "john" for computer "home-computer"
 {
-  inputs,
-  outputs,
-  lib,
   pkgs,
   ...
 }: 
@@ -10,7 +8,6 @@
     ./base.nix # Import all base settings
   ];
 
-  # More specific packages for the computer "default"
   home.packages = with pkgs; [ 
     # nvidia-system-monitor-qt
   ];
