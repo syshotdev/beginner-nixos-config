@@ -1,6 +1,5 @@
 Add AMD support
 Add README's to all directories to explain exactly what it's for and how to use it. (example: computers. It's for system configs for different computers)
-Add all the apps to taskbar
 Add section in README that explains how to correctly add new part to modules directory
 Broken desktop: Can't open apps, restart cinnamon, steam popups become clear windows. Why?
 Create directories in home directory for all different apps and things (Like: Programming, Programs, ProgramData, SecretAndKeys, etc...)
@@ -9,11 +8,10 @@ Donate to the nixos fund so they don't go bankrupt
 Every time a git commit is committed, run the "check if personal info or api keys exist" function automatically. If it does find conflicts, respond where and optionally commit.
 Find out what was lagging Firefox and giving super long loading times
 Find out why Minecraft 1.8.9 crashes my graphics drivers everytime I close the application
+I should really create the format guide, complete with the super formatter script
 Keybind thing for pausing/skipping/previousing my music w/mouse buttons
 Keybind to screenshot with WIN + SHIFT + S
 Kitty why does it open as my default file manager
-Languages: English, Chinese, and Russian.
-Make standard for how to write this text file
 Minecraft fix error "GLFW error during init: [0x1000E]Failed to detect any supported platform"
 Minecraft launcher actually launches
 Minecraft profiles are downloaded and installed automatically
@@ -30,16 +28,17 @@ Neovim whenever I open terminal keep buffers the way they are
 Open up editing suite script (open OBS, Audacity, File manager at video clips, Video Editor)
 PDFS should be opened with Firefox automatically
 Script to turn mkv files to mp4 automatically on OBS stop recording
-Should I wrap around text in this TODO file?
 SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal 
 Test new and improved configuration by installing on old laptop
 Understand what the heck SSH is and how to automatically generate keys
 Wallpaper should be cool
 Why does google docs flicker with Firefox (But only sometimes?)
+Why in the heck does opening .zip files default to prism launcher
 Why is it that when I run an application, it gives an "incompatible qt library blah blah" but with sudo it works?
+Terminal autocorrect/intellisense
 Window manager (hyprland or whatever it's called)
 Workspaces
-
+Change description of this repo
 
 
 Things that are too hard for how much time they save configuring:
@@ -93,7 +92,3 @@ Easy to navigate around this config
 Restructure into modules and rename to make sense
 Give credits to all the people I "borrowed" code from
 Separate all CPU optimizations for AMD, Intel, and Laptop.
-
-Nah:
-Organize user "neck"s packages (since there are like more than 10 now and it's growing)
-Remove "custom packages" directory (If it's possible) and put it into home

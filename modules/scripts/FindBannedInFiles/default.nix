@@ -1,10 +1,10 @@
-# TODO: Find a way to add bannedwords.txt to the directory of checknames.sh
+# TODO: Find a way to add bannedwords.txt to the directory of FindBannedInFiles.sh
 { pkgs, ... }:
 let
-  check-names = pkgs.writeScriptBin "check-names" 
-    (builtins.readFile ./CheckNames.sh);
+  find-banned-in-files = pkgs.writeScriptBin "find-banned-in-files" 
+    (builtins.readFile ./FindBannedInFiles.sh);
 in {
   environment.systemPackages = [
-    check-names
+    find-banned-in-files
   ];
 }

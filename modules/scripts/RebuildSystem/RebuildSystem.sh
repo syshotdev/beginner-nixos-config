@@ -7,30 +7,31 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-computer_name="$1"
+export computer_name="$1"
 
 # Find the nearest flake.nix in the current directory or upwards
-flake_file=$(find "$(pwd)" -name "flake.nix" -print -quit)
+export flake_file=$(find "$(pwd)" -name "flake.nix" -print -quit)
 if [ -z "$flake_file" ]; then
     echo "No flake.nix found in the current directory or any parent directories."
     exit 1
 fi
 
-# Set up necessary environment variables and packages
-export NIX_CONFIG="experimental-features = nix-command flakes"
-nix-shell -p git
-nix shell nixpkgs#home-manager
-
-# Replace "computer='<previous_name>'" with "computer='COMPUTER_NAME'"
-sed -i "s/computer='[^']*'/computer='$computer_name'/" "$flake_file"
-
 # Generate hardware-configuration.nix
-sudo nixos-generate-config --root /
+sudo nixos-generate-config
 
 # Copy the generated hardware-configuration.nix to the appropriate directory
-config_path="computers/$computer_name"
+config_path="./computers/$computer_name"
 mkdir -p "$config_path"
 cp -f /etc/nixos/hardware-configuration.nix "$config_path/"
 
+# Replace "computer='<previous_name>'" with "computer='COMPUTER_NAME'"
+sed -i "s/computer = \"[^\"]*\";/computer = \"$computer_name\";/" "$flake_file"
+
+# Set up necessary environment variables and packages
+export NIX_CONFIG="experimental-features = nix-command flakes"
+
+echo "Rebuilding..."
 # Rebuild the system with the specified flake
-sudo nixos-rebuild switch --flake .#"$computer_name"
+nix-shell -p git home-manager --run "
+    sudo nixos-rebuild switch --flake .#$computer_name
+"
