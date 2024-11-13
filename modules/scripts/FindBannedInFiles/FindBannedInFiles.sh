@@ -11,23 +11,36 @@
 
 
 usage() {
-  echo "Usage: $0 directory_to_check [-b bannedwords_file]" >&2
+  echo "Usage: $0 directory_to_check 
+  [-b bannedwords_file]
+  [-i ignore_hidden]" >&2
   exit 1
 }
 
-path=${1:-$PWD} # If path supplied, use that. Otherwise use current terminal path
 script_dir=$(dirname "$(readlink -f "$0")")
 banned_words="$script_dir/bannedwords.txt"
+ignore_hidden=false
 
-while getopts "b:" opt; do
+while getopts ":b:i" opt; do
   case $opt in
     b) banned_words="$OPTARG";;
+    i) ignore_hidden=true;;
     *) usage;;
   esac
 done
 # Shift the processed options out of the way
 shift $((OPTIND-1))
 
+# After getopts because of bug
+path=${1:-$PWD} # If path supplied, use that. Otherwise use current terminal path
+
+if $ignore_hidden; then
+  rg_options="-n -i"
+  find_options="-iname \"$query*\" -print0"
+else
+  rg_options="-uuu -n -i"
+  find_options="-iname \".*$query*\" -o -iname \"$query*\" -print0"
+fi
 
 echo "Using path: $path"
 echo "Using bannedwords file: $banned_words"
@@ -48,7 +61,7 @@ while IFS= read -r query; do
   # Very sorry for the code, it's ChatGPT written and I don't understand it.
   if [[ -n "$query" ]]; then
     # Search for directories and files matching the query
-    filename_matches=$(find "$path" -iname ".*$query*" -o -iname "$query*" -print0 | xargs -0 printf "%s\n")
+    filename_matches=$(find "$path" $find_options | xargs -0 printf "%s\n")
     if [[ -n "$filename_matches" ]]; then
       found_words+=("$query")
       # For each match, format it like "word, path"
@@ -58,7 +71,7 @@ while IFS= read -r query; do
     fi
 
     # Search within file contents, including git ignored ones
-    content_matches=$(rg -uuu -n -i "$query" "$path")
+    content_matches=$(rg $rg_options "$query" "$path")
     # I've gotten deep into the weeds of programming (what are these hyroglyphics)
     # Regular expression to format ripgrep response to banned_word, /path/to/file, line 10, "{content}"
     content_matches=$(echo "$content_matches" | sed -E "s/^([^:]+):([0-9]+):(.*)$/$query, \1, line \2, \3/")
