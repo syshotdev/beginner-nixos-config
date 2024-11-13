@@ -31,9 +31,7 @@ Neovim whenever I close terminal keep buffers the way they are
 Neovim whenever I open terminal keep buffers the way they are
 Open up editing suite script (open OBS, Audacity, File manager at video clips, Video Editor)
 PDFS should be opened with Firefox automatically
-Script fix findbannedinfiles where you can ignore .git and .gitignored
 Script to force add drive
-Script to make folder TRULY PUBLIC
 Script to turn mkv files to mp4 automatically on OBS stop recording
 Set all the default apps
 SimulaVR should be installed automatically and declaratively, not by putting commands in the terminal 
@@ -60,6 +58,7 @@ Brave
 
 
 Done:
+Script to make folder TRULY PUBLIC
 Neovim terminal is easier to close with better shortcut
 Delete everything
 Scripts: CheckNames: Offending word/words first, then path, then line
