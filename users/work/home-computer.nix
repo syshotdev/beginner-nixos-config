@@ -1,4 +1,4 @@
-# Configuration of the user "john" for computer "work-laptop"
+# Configuration of the user "work" for computer "home-computer"
 {
   pkgs,
   ...
@@ -9,7 +9,7 @@
   ];
 
   home.packages = with pkgs; [ 
-    # thunderbird
+    # zoom-us
     # nvidia-system-monitor-qt
   ];
 }

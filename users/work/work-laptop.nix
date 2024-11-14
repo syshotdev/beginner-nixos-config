@@ -12,6 +12,7 @@
   # Each user has specific computer configurations because of cases like these
   # These are nvidia-specific programs
   home.packages = with pkgs; [ 
+    # zoom-us
     # nvidia-system-monitor-qt
     # (blender.override { cudaSupport = true; })
   ];

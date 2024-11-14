@@ -9,6 +9,7 @@
   ];
 
   home.packages = with pkgs; [ 
+    # prismlauncher # This is Minecraft
     # nvidia-system-monitor-qt
   ];
 }
