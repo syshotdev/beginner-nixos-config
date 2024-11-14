@@ -1,3 +1,0 @@
-{
-  scripts = ./default.nix;
-}
