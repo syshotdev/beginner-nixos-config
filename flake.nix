@@ -45,7 +45,7 @@
     systemModules = import ./modules/system; # Modules for system
     homeModules = import ./modules/home; # Modules for users
     # Use the "import" keyword pls (I changed the insides and now it requires not importing it)
-    scriptModules = import ./modules/scripts; # Scripts that I've made, modules because they're optional
+    scriptModules = import ./modules/scripts {inherit nixpkgs;}; # Scripts that I've made, modules because they're optional
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
@@ -56,34 +56,24 @@
     # NixOS configuration entrypoint
     # Available through 'sudo nixos-rebuild switch --flake .#computername'
     nixosConfigurations = {
-      default = nixpkgs.lib.nixosSystem {
+      home-computer = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         modules = [
           home-manager.nixosModules.home-manager{
             home-manager.extraSpecialArgs = specialArgs;
           }
           
-          ./computers/default/configuration.nix
+          ./computers/home-computer/configuration.nix
         ];
       };
-      desktop = nixpkgs.lib.nixosSystem {
+      work-laptop = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         modules = [
           home-manager.nixosModules.home-manager{
             home-manager.extraSpecialArgs = specialArgs;
           }
           
-          ./computers/desktop/configuration.nix
-        ];
-      };
-      laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        modules = [
-          home-manager.nixosModules.home-manager{
-            home-manager.extraSpecialArgs = specialArgs;
-          }
-          
-          ./computers/laptop/configuration.nix
+          ./computers/work-laptop/configuration.nix
         ];
       };
     };
