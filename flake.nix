@@ -29,7 +29,7 @@
     # Everything inside these brackets are attributes, accessable via outputs.attribute
     systemModules = import ./modules/system; # Modules for system
     homeModules = import ./modules/home; # Modules for users
-    scriptModules = import ./modules/scripts {inherit nixpkgs;}; # Scripts that I've made
+    scriptModules = import ./modules/scripts; # Scripts that I've made
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
