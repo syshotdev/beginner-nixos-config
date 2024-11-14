@@ -44,7 +44,8 @@
 
     systemModules = import ./modules/system; # Modules for system
     homeModules = import ./modules/home; # Modules for users
-    scriptModules = ./modules/scripts; # Scripts that I've made, modules because they're optional
+    # Use the "import" keyword pls (I changed the insides and now it requires not importing it)
+    scriptModules = import ./modules/scripts; # Scripts that I've made, modules because they're optional
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
