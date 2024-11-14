@@ -44,6 +44,7 @@ Why is it that when I run an application, it gives an "incompatible qt library b
 Why when I switch accounts my cursor is vibrating and the screen is black (CTRL-SHIFT-ESC to fix)
 Window manager (hyprland or whatever it's called)
 Workspaces
+FIX SCRIPTS!
 
 
 Things that are too hard for how much time they save configuring:

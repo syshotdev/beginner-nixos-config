@@ -1,5 +1,5 @@
 {
-  description = "Syshotdev's system configuration flake";
+  description = "Syshotdev's beginner flake that also has modules";
 
   inputs = {
     # Nixpkgs
@@ -18,34 +18,18 @@
     home-manager,
     ...
   } @ inputs: let
+    # Everything inside this "let" statement are variables
     inherit (self) outputs;
-    # Supported systems for your flake packages, shell, etc.
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-
-    # This is a function that generates an attribute by calling a function you
-    # pass to it, with each system as an argument
-    forAllSystems = nixpkgs.lib.genAttrs systems;
 
     # Will make `computer` equal to the --flake .#{COMPUTER_NAME} eventually
-    computer = "desktop";
+    computer = "home-computer";
     # I saw a lot of repetitive code, so put it into variable
     specialArgs = {inherit inputs outputs nixpkgs computer;};
   in {
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
-
+    # Everything inside these brackets are attributes, accessable via outputs.attribute
     systemModules = import ./modules/system; # Modules for system
     homeModules = import ./modules/home; # Modules for users
-    # Use the "import" keyword pls (I changed the insides and now it requires not importing it)
-    scriptModules = import ./modules/scripts {inherit nixpkgs;}; # Scripts that I've made, modules because they're optional
+    scriptModules = import ./modules/scripts {inherit nixpkgs;}; # Scripts that I've made
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.

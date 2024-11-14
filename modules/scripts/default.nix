@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   # Helper function for making commands that you can execute via terminal
   mkScript = name: scriptPath: extraPkgs: pkgs.writeScriptBin name 
@@ -21,6 +21,7 @@ let
     (mkScript "force-mount-drive" ./ForceMountDrive.sh [ pkgs.ntfs3g ])
   ];
 in {
-  # scripts = scripts, to access put scriptModules.scripts in imports and it'll install all of 'em
-  inherit scripts;
+  # To access put scriptModules.scripts in imports and it'll install all of 'em
+  # Add all scripts to environment.systemPackages when imported
+  environment.systemPackages = config.environment.systemPackages or [] ++ scripts;
 }
