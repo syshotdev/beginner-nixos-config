@@ -18,6 +18,7 @@ let
     (mkScript "publicize-folder" ./PublicizeFolder.sh [])
     (mkScript "rebuild" ./RebuildSystem.sh [])
     (mkScript "vr-run" ./VrRun.sh [ pkgs.patchelf ])
+    (mkScript "force-mount-drive" ./ForceMountDrive.sh [ pkgs.ntfs3g ])
   ];
 in {
   # scripts = scripts, to access put scriptModules.scripts in imports and it'll install all of 'em
