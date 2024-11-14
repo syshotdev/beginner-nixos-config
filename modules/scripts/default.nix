@@ -21,7 +21,15 @@ let
     (mkScript "force-mount-drive" ./ForceMountDrive.sh [ pkgs.ntfs3g ])
   ];
 in {
+  # Alright the conundrum is: scriptModules is importing this file
+  # It basically expects a SET not a FUNCTION, and that means we can't use pkgs in this script
+  # and we can basically only list paths.
+  # We can list paths to files that are functions, and then define all the scripts there but
+  # I'm just super bummed out that I can't use all of this really smart code in this default.nix
+  # because nix works in increasingly more and more confusing ways.
+  #find-banned-in-files = mkScript "find-banned-in-files" ./FindBannedInFiles.sh [ pkgs.ripgrep ];
+  scripts = scripts;
   # To access put scriptModules.scripts in imports and it'll install all of 'em
   # Add all scripts to environment.systemPackages when imported
-  environment.systemPackages = config.environment.systemPackages or [] ++ scripts;
+  #environment.systemPackages = config.environment.systemPackages or [] ++ scripts;
 }
