@@ -14,7 +14,7 @@
     # outputs.systemModules.optimizations.cpu
     # outputs.systemModules.optimizations.gpu
 
-    outputs.scriptModules.scripts
+    outputs.scriptModules
 
     # Enable steam
     # outputs.systemModules.steam
