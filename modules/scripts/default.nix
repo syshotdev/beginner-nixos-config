@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 let
   # Helper function for making commands that you can execute via terminal
-  mkScript = name: scriptPath: extraPackages:
+  mkScript = name: scriptPath:
     (pkgs.writeScriptBin name (builtins.readFile scriptPath));
 in {
   # I really should figure out a way to OPTIONALLY add these scripts
