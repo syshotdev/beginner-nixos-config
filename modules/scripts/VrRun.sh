@@ -30,7 +30,5 @@ echo "Patching VR client at $VRCLIENT with rpath $STOREPATH"
 patchelf --set-rpath "$STOREPATH" "$VRCLIENT"
 
 # Run the application with steam-run, passing all arguments
-#steam-run "$@"
+steam-run "$@"
 
-# Nah just run the application directly
-$@
