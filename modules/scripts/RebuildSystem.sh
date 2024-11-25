@@ -9,6 +9,9 @@ fi
 
 export computer_name="$1"
 
+# Remove the computer_name argument
+shift
+
 # Find the nearest flake.nix in the current directory or upwards
 export flake_file=$(find "$(pwd)" -name "flake.nix" -print -quit)
 if [ -z "$flake_file" ]; then
@@ -31,7 +34,7 @@ sed -i "s/computer = \"[^\"]*\";/computer = \"$computer_name\";/" "$flake_file"
 export NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "Rebuilding..."
-# Rebuild the system with the specified flake
+# Rebuild the system with the specified flake, passing in any other arguments
 nix-shell -p git home-manager --run "
-    sudo nixos-rebuild switch --flake .#$computer_name
+    sudo nixos-rebuild switch --flake .#$computer_name $@
 "
