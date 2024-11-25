@@ -13,7 +13,6 @@ in {
     (mkScript "find-banned-in-files" ./FindBannedInFiles.sh)
     (mkScript "publicize-folder" ./PublicizeFolder.sh)
     (mkScript "rebuild" ./RebuildSystem.sh)
-    steam-run
     patchelf
     (mkScript "vr-run" ./VrRun.sh)
     ntfs3g
